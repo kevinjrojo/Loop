@@ -1,0 +1,129 @@
+.login-conteiner {
+  display: grid;
+  grid-template-columns: 6fr 4fr;
+  justify-content: space-evenly;
+  height: 100vh;
+  background-color: #212121;
+}
+.conteiner-logo {
+  text-align: center;
+  margin: auto;
+}
+.logo-loop {
+  max-width: 80%;
+}
+.form-login-conteiner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  transition: all 1s ease;
+}
+.form-login .form-front {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  position: absolute;
+  backface-visibility: hidden;
+  padding: 65px 45px;
+  border-radius: 15px;
+  box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 1),
+    inset -1px -1px 5px rgba(255, 255, 255, 0.6);
+}
+.form-title {
+  font-size: 25px;
+  font-weight: 600;
+  padding-bottom: 10px;
+  color: white;
+}
+.form-title-name {
+  color: white;
+}
+.form-title-email {
+  color: white;
+}
+.form-input {
+  width: 245px;
+  min-height: 45px;
+  color: #fff;
+  outline: none;
+  transition: 0.35s;
+  padding: 0px 7px;
+  background-color: #212121;
+  border-radius: 6px;
+  border: 2px solid #212121;
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
+    1px 1px 10px rgba(255, 255, 255, 0.6);
+}
+.form-input::placeholder {
+  color: #999;
+}
+.form-i.form-input.form-input::placeholder {
+  transition: 0.3s;
+  opacity: 0;
+}
+.form-input:focus {
+  transform: scale(1.05);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
+    1px 1px 10px rgba(255, 255, 255, 0.6), inset 2px 2px 10px rgba(0, 0, 0, 1),
+    inset -1px -1px 5px rgba(255, 255, 255, 0.6);
+}
+.form-btn-submit {
+  padding: 10px 35px;
+  cursor: pointer;
+  background-color: #212121;
+  border-radius: 6px;
+  border: 2px solid #212121;
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
+    1px 1px 10px rgba(255, 255, 255, 0.6);
+  color: #fff;
+  font-size: 15px;
+  font-weight: bold;
+  transition: 0.35s;
+}
+.form-btn-submit:hover {
+  transform: scale(1.05);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
+    1px 1px 10px rgba(255, 255, 255, 0.6), inset 2px 2px 10px rgba(0, 0, 0, 1),
+    inset -1px -1px 5px rgba(255, 255, 255, 0.6);
+}
+
+.form-btn-submit:focus {
+  transform: scale(1.05);
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
+    1px 1px 10px rgba(255, 255, 255, 0.6), inset 2px 2px 10px rgba(0, 0, 0, 1),
+    inset -1px -1px 5px rgba(255, 255, 255, 0.6);
+}
+.form-login .switch {
+  font-size: 13px;
+  color: white;
+}
+
+.form-login .switch .signup-tog {
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+  color: rgb(96, 222, 245);
+}
+.form-login-conteiner #signup-toggle {
+  display: none;
+}
+
+.form-login-conteiner #signup-toggle:checked + .form {
+  transform: rotateY(-180deg);
+}
+@media (300px <= width <= 900px) {
+  .login-conteiner {
+    grid-template-columns: auto;
+  }
+  .logo-loop {
+    max-width: 20%;
+  }
+}
