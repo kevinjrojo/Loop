@@ -10,35 +10,31 @@ export const Login = () => {
         <input type="checkbox" id="signup-toggle" />
         <form className="form-login">
           <div className="form-front">
-            <h2 className="form-title">Login</h2>
-            <label for="nombre" className="form-title-name">
-              Nombre
-            </label>
+            <h2 className="form-title">Loop</h2>
+
             <input
               type="text"
-              placeholder="Escriba su nombre..."
+              placeholder="Usuario o correo electrónico"
               className="form-input"
               required
             />
-            <label for="email" className="form-title-email">
-              Email
-            </label>
+
             <input
               type="email"
-              placeholder="Correo@gmail.com"
+              placeholder="Contraseña"
               className="form-input"
               required
             />
             <input
               type="submit"
-              value="continuar"
+              value="Ingresar"
               className="form-btn-submit"
               required
             />
             <span className="switch">
-              Todavia no te registraste?
+              ¿Todavia no te registraste?
               <label className="signup-tog" htmlFor="signup-toggle">
-                Sign Up
+                Regístrate
               </label>
             </span>
           </div>
