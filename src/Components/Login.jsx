@@ -1,13 +1,13 @@
 import logo from "../assets/bucle-feliz.webp";
 import "../styles/login.css";
-import { Registre } from "./Registre";
+import { Register } from "./Register";
 import { useState } from "react";
 
 export const Login = () => {
-  const [loginRegistre, setLoginRegistre] = useState("form-registre");
+  const [loginRegister, setLoginRegister] = useState("form-register");
   const usuarioLogin = () => {
-    setLoginRegistre(
-      loginRegistre === "form-registre" ? "form-back-registre" : "form-registre"
+    setLoginRegister(
+      loginRegister === "form-register" ? "form-back-register" : "form-register"
     );
   };
 
@@ -28,26 +28,24 @@ export const Login = () => {
               required
             />
             <input
-              type="email"
+              type="password"
               placeholder="Contraseña"
               className="form-input"
               required
             />
-            <input
-              type="submit"
-              value="Ingresar"
-              className="form-btn-submit"
-              required
-            />
+            <input type="submit" value="Ingresar" className="form-btn-submit" />
+            {/*  <span className="switch-login-password">
+              ¿Olvidaste tu contraseña?
+            </span>*/}
             <span className="switch-login">
-              ¿Todavia no te registraste?
+              ¿No tienes una cuenta?
               <label className="signup-tog-login" onClick={usuarioLogin}>
                 Regístrate
               </label>
             </span>
           </div>
-          <Registre loginRegistre={loginRegistre} usuarioLogin={usuarioLogin} />
         </form>
+        <Register loginRegister={loginRegister} usuarioLogin={usuarioLogin} />
       </nav>
     </div>
   );
