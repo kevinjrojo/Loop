@@ -31,7 +31,7 @@
   align-items: center;
   gap: 20px;
   position: absolute;
-  backface-visibility: hidden;
+  backface-visibility: visible;
   padding: 65px 45px;
   border-radius: 15px;
   box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 1),
@@ -129,9 +129,6 @@
   color: rgb(96, 222, 245);
 }
 
-/*.form-login-conteiner #signup-toggle:checked + .form {
-  transform: rotateY(-180deg);
-}*/
 @media (300px <= width <= 900px) {
   .login-conteiner {
     grid-template-columns: auto;
