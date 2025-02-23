@@ -55,7 +55,11 @@ export const Register = ({ loginRegister, usuarioLogin }) => {
           value={userData.contraseña}
           onChange={handleChange}
         />
-        <button className="form-btn-submit-register">Regístrate</button>
+        <input
+          type="submit"
+          value="Registrarte"
+          className="form-btn-submit-register"
+        />
       </form>
       <span className="switch-register">
         ¿Ya tienes una cuenta?

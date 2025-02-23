@@ -119,6 +119,7 @@
   color: rgb(96, 222, 245);
 }
 .switch-login-password {
+  transition: color 0.35s;
   font-size: 14px;
   color: white;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
@@ -127,6 +128,7 @@
 }
 .switch-login-password:hover {
   color: rgb(96, 222, 245);
+  transition: 0.35s;
 }
 
 @media (300px <= width <= 900px) {

@@ -1,5 +1,6 @@
 import logo from "../assets/bucle-feliz.webp";
 import "../styles/login.css";
+import { Password } from "./Password";
 import { Register } from "./Register";
 import { useState } from "react";
 
@@ -8,6 +9,15 @@ export const Login = () => {
   const usuarioLogin = () => {
     setLoginRegister(
       loginRegister === "form-register" ? "form-back-register" : "form-register"
+    );
+  };
+
+  const [recoverPassword, setRecoverPassword] = useState("form-password");
+  const userPassword = () => {
+    setRecoverPassword(
+      recoverPassword === "form-password"
+        ? "form-back-password"
+        : "form-password"
     );
   };
 
@@ -43,9 +53,16 @@ export const Login = () => {
                 Regístrate
               </label>
             </span>
+            <label className="switch-login-password" onClick={userPassword}>
+              ¿Olvidaste tu contraseña?
+            </label>
           </div>
         </form>
         <Register loginRegister={loginRegister} usuarioLogin={usuarioLogin} />
+        <Password
+          recoverPassword={recoverPassword}
+          userPassword={userPassword}
+        />
       </nav>
     </div>
   );
