@@ -1,10 +1,12 @@
 import "./App.css";
-import { Login } from "./Components/login";
+
+import { Start } from "./Components/Start.jsx";
 
 function App() {
   return (
     <>
-      <Login />
+      {/* <Login /> */}
+      <Start />
     </>
   );
 }
