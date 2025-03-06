@@ -1,0 +1,48 @@
+.container-home {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  gap: 3px;
+}
+.container-header-history {
+  grid-column: span 4 / span 4;
+  grid-column-start: 2;
+  grid-row-start: 1;
+  border: 2px coral solid;
+}
+.container-nav-list {
+  grid-row: span 7 / span 7;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 3px;
+  border: 2px coral solid;
+}
+.home-logo {
+  width: 70px;
+}
+.browser-loop {
+  color: white;
+  list-style: none;
+}
+.container-main {
+  grid-column: span 3 / span 3;
+  grid-row: span 5 / span 5;
+  grid-column-start: 2;
+  grid-row-start: 2;
+  border: 2px coral solid;
+}
+.container-article {
+  grid-row: span 6 / span 6;
+  grid-column-start: 5;
+  grid-row-start: 2;
+  border: 2px coral solid;
+}
+.container-footer {
+  grid-column: span 3 / span 3;
+  grid-column-start: 2;
+  grid-row-start: 7;
+  border: 2px coral solid;
+}

@@ -3,15 +3,15 @@ import "../styles/login.css";
 import { Password } from "./Password";
 import { Register } from "./Register";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export const Login = () => {
+const Login = () => {
   const [loginRegister, setLoginRegister] = useState("form-register");
   const usuarioLogin = () => {
     setLoginRegister(
       loginRegister === "form-register" ? "form-back-register" : "form-register"
     );
   };
-
   const [recoverPassword, setRecoverPassword] = useState("form-password");
   const userPassword = () => {
     setRecoverPassword(
@@ -21,6 +21,67 @@ export const Login = () => {
     );
   };
 
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    setError(null); // Limpia errores previos
+
+    if (!user || !password) {
+      setTildeError("*");
+      setError("Por favor, completa todos los campos.");
+
+      return;
+    }
+
+    try {
+      const formData = new URLSearchParams();
+      formData.append("username", username);
+      formData.append("password", password);
+
+      const response = await fetch(
+        "http://user-manager-mi2a.onrender.com/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: formData.toString(),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Usuario o contraseña incorrectos");
+      }
+
+      const data = await response.json();
+      const token = data.access_token;
+      console.log("Token obtenido:", token);
+
+      localStorage.setItem("token", token);
+
+      const userResponse = await fetch(
+        "https://user-manager-mi2a.onrender.com/user/me",
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!userResponse.ok) {
+        throw new Error("Error al obtener datos del usuario");
+      }
+
+      const userData = await userResponse.json();
+      console.log("Datos del usuario:", userData);
+
+      navigate("/home");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
   return (
     <div className="login-conteiner">
       <article className="conteiner-logo">
@@ -31,19 +92,28 @@ export const Login = () => {
         <form className="form-login">
           <div className="form-front">
             <h1 className="form-title">Loop</h1>
+
             <input
               type="text"
-              placeholder="Usuario o correo electrónico"
+              placeholder="Usuario"
               className="form-input"
-              required
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
             />
+
             <input
               type="password"
               placeholder="Contraseña"
               className="form-input"
-              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <input type="submit" value="Ingresar" className="form-btn-submit" />
+            <input
+              type="button"
+              value="Ingresar"
+              className="form-btn-submit"
+              onClick={handleLogin}
+            />
             {/*  <span className="switch-login-password">
               ¿Olvidaste tu contraseña?
             </span>*/}
@@ -56,8 +126,10 @@ export const Login = () => {
             <label className="switch-login-password" onClick={userPassword}>
               ¿Olvidaste tu contraseña?
             </label>
+            {error && <p style={{ color: "red" }}>{error}</p>}
           </div>
         </form>
+
         <Register loginRegister={loginRegister} usuarioLogin={usuarioLogin} />
         <Password
           recoverPassword={recoverPassword}
@@ -67,3 +139,4 @@ export const Login = () => {
     </div>
   );
 };
+export default Login;

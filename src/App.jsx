@@ -1,14 +1,39 @@
 import "./App.css";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import Login from "./Components/Login.jsx";
+import Home from "./Components/Home.jsx";
 
-import { Start } from "./Components/Start.jsx";
+const PrivateRoute = ({ children }) => {
+  const token = localStorage.getItem("token");
+  return token ? children : <Navigate to="/" />;
+};
 
-function App() {
+const App = () => {
   return (
-    <>
-      {/* <Login /> */}
-      <Start />
-    </>
+    <Router>
+      <Routes>
+        {/* Página de login (ruta pública) */}
+        <Route path="/" element={<Login />} />
+
+        {/* Página de inicio (ruta protegida) */}
+        <Route
+          path="/home"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+        {/* Ruta por defecto si la URL no existe */}
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

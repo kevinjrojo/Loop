@@ -1,5 +1,6 @@
 import "../styles/register.css";
 import { useState } from "react";
+
 export const Register = ({ loginRegister, usuarioLogin }) => {
   const [userData, setUserData] = useState({
     nombre: "",
@@ -7,16 +8,26 @@ export const Register = ({ loginRegister, usuarioLogin }) => {
     correo: "",
     contraseña: "",
   });
+
   const handleChange = (e) => {
     setUserData({
       ...userData,
       [e.target.name]: e.target.value,
     });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Datos del formulario:", userData);
-    alert("Datos guardados! ingrese sesion.");
+    console.log("Enviado datos al backend", userData);
+
+    // Enviar datos al backend
+    const res = await fetch("http://localhost:3001/guardar", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userData),
+    });
+
+    const result = await res.text();
+    console.log(result);
   };
 
   return (
