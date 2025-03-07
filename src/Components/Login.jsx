@@ -2,7 +2,7 @@ import logo from "../assets/bucle-feliz.webp";
 import "../styles/login.css";
 import { Password } from "./Password";
 import { Register } from "./Register";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -21,67 +21,64 @@ const Login = () => {
     );
   };
 
-  const [user, setUser] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({username: "", password: ""});
+  const [fetchData, setFetchData] = useState(false);
   const [error, setError] = useState(null);
+  const [token, setToken] = useState(null);
+  
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    setError(null); // Limpia errores previos
+  useEffect( () => {
+    if (fetchData) {
+      const data = new URLSearchParams();
+      data.append("username", formData.username);
+      data.append("password", formData.password);
 
-    if (!user || !password) {
-      setTildeError("*");
-      setError("Por favor, completa todos los campos.");
-
-      return;
-    }
-
-    try {
-      const formData = new URLSearchParams();
-      formData.append("username", username);
-      formData.append("password", password);
-
-      const response = await fetch(
-        "http://user-manager-mi2a.onrender.com/login",
+      console.log("INICIANDO FETCH")
+      fetch("https://user-manager-mi2a.onrender.com/login",
         {
           method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: formData.toString(),
+          headers: {"Content-Type" : "application/x-www-form-urlencoded"},
+          body: data.toString()
         }
-      );
-      if (!response.ok) {
-        throw new Error("Usuario o contraseña incorrectos");
-      }
+      )
+      .then(response => {
+        console.log("RESOLVIENDO RESPONSE")
 
-      const data = await response.json();
-      const token = data.access_token;
-      console.log("Token obtenido:", token);
-
-      localStorage.setItem("token", token);
-
-      const userResponse = await fetch(
-        "https://user-manager-mi2a.onrender.com/user/me",
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
+        if (!response.ok) {
+          //Manejar error en respuesta
         }
-      );
+        return response.json();
+      })
+      .then(data => {
+        console.log("RESOLVIENDO DATA")
 
-      if (!userResponse.ok) {
-        throw new Error("Error al obtener datos del usuario");
-      }
+        const newToken = data.access_token;
+        setToken(newToken);
+        alert(newToken); //Muestra el token cuando lo recibe //BORRAR EN PRODUCCION
+        setFetchData(false)
 
-      const userData = await userResponse.json();
-      console.log("Datos del usuario:", userData);
-
-      navigate("/home");
-    } catch (err) {
-      setError(err.message);
+      });
     }
+  }, [fetchData]);
+
+  useEffect ( () => {
+    if(token) {
+      console.log("GUARDANDO TOKEN EN LOCAL STORAGE")
+      localStorage.setItem("access_token", token)
+      console.log("REDIRIGIENDO A HOME")
+      navigate("/home")
+    }
+  }, [token])
+  
+  const handleFormData = (e) =>  {
+    setError(null)
+    e.preventDefault()
+    const {username, password} = e.target.elements;
+    setFormData({username: username.value, password: password.value})
+    setFetchData(true)
   };
+
   return (
     <div className="login-conteiner">
       <article className="conteiner-logo">
@@ -89,30 +86,31 @@ const Login = () => {
       </article>
       <nav className="form-login-conteiner">
         <input type="checkbox" id="signup-toggle" />
-        <form className="form-login">
+        <form className="form-login" onSubmit={handleFormData}>
           <div className="form-front">
             <h1 className="form-title">Loop</h1>
 
             <input
+              name="username"
               type="text"
               placeholder="Usuario"
               className="form-input"
-              value={user}
-              onChange={(e) => setUser(e.target.value)}
+              value={formData.username}
+              onChange={(e) => setFormData({...formData, username : e.target.value})}
             />
 
             <input
+              name="password"
               type="password"
               placeholder="Contraseña"
               className="form-input"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formData.password}
+              onChange={(e) => setFormData({...formData, password : e.target.value})}
             />
             <input
-              type="button"
+              type="submit"
               value="Ingresar"
               className="form-btn-submit"
-              onClick={handleLogin}
             />
             {/*  <span className="switch-login-password">
               ¿Olvidaste tu contraseña?
