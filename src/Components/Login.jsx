@@ -38,15 +38,15 @@ const Login = () => {
 
     try {
       const formData = new URLSearchParams();
-      formData.append("username", username);
+      formData.append("username", user);
       formData.append("password", password);
 
       const response = await fetch(
-        "http://user-manager-mi2a.onrender.com/login",
+        "https://user-manager-mi2a.onrender.com/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: formData.toString(),
+          body: formData,
         }
       );
       if (!response.ok) {
@@ -54,8 +54,14 @@ const Login = () => {
       }
 
       const data = await response.json();
+      {
+        /**console.log(data);  */
+      }
+
       const token = data.access_token;
-      console.log("Token obtenido:", token);
+      {
+        /* console.log("Token obtenido:", token); * */
+      }
 
       localStorage.setItem("token", token);
 
@@ -75,7 +81,9 @@ const Login = () => {
       }
 
       const userData = await userResponse.json();
-      console.log("Datos del usuario:", userData);
+      {
+        /** console.log("Datos del usuario:", userData);  */
+      }
 
       navigate("/home");
     } catch (err) {

@@ -2,6 +2,7 @@ import "../styles/home.css";
 import logo from "../assets/bucle-feliz.webp";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 const Home = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -10,7 +11,9 @@ const Home = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-
+    {
+      /**  console.log("Token almacenado:", token);*/
+    }
     if (!token) {
       navigate("/login"); // Redirige al login si no hay token
       return;
@@ -34,9 +37,14 @@ const Home = () => {
         }
 
         const userData = await response.json();
+        {
+          /** console.log("Datos recibidos del usuario:", userData); */
+        }
         setUser(userData);
       } catch (err) {
-        console.error(err);
+        {
+          /**  console.error(err);*/
+        }
         setError("Error al cargar datos del usuario");
       } finally {
         setLoading(false);
@@ -51,7 +59,7 @@ const Home = () => {
     navigate("/login"); // Redirigir al login
   };
 
-  if (loading) return <p>Cargando...</p>;
+  if (loading) return <p style={{ color: "white" }}>Cargando...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
@@ -62,12 +70,12 @@ const Home = () => {
         <li className="browser-loop">Inicio</li>
         <li className="browser-loop">Perfil</li>
         <li className="browser-loop">Notificaciones</li>
-        <li className="browser-loop" onClick={handleLogout}>
+        <li className="browser-loop-close" onClick={handleLogout}>
           Cerrar sesion
         </li>
       </nav>
       <main className="container-main">
-        <h1>Bienvenido, {user?.username}!</h1>
+        <h1>Bienvenido,{user?.usename}!</h1>
       </main>
       <article className="container-article"></article>
       <footer className="container-footer"></footer>
