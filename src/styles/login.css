@@ -5,6 +5,9 @@
   height: 100vh;
   background-color: #212121;
 }
+.login-conteiner-loading {
+  display: none;
+}
 .conteiner-logo {
   text-align: center;
   margin: auto;

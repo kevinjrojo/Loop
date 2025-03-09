@@ -2,64 +2,34 @@ import "../styles/home.css";
 import logo from "../assets/bucle-feliz.webp";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { getUserData, logoutUser } from "../services/authService";
 import { useState } from "react";
+
 const Home = () => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    {
-      /**  console.log("Token almacenado:", token);*/
-    }
-    if (!token) {
-      navigate("/login"); // Redirige al login si no hay token
-      return;
-    }
-
-    const fetchUserData = async () => {
+    const fetchUser = async () => {
       try {
-        const response = await fetch(
-          "https://user-manager-mi2a.onrender.com/user/me",
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const userData = await getUserData();
 
-        if (!response.ok) {
-          throw new Error("Error al obtener datos del usuario");
-        }
-
-        const userData = await response.json();
-        {
-          /** console.log("Datos recibidos del usuario:", userData); */
-        }
         setUser(userData);
       } catch (err) {
-        {
-          /**  console.error(err);*/
-        }
-        setError("Error al cargar datos del usuario");
-      } finally {
-        setLoading(false);
+        setError(err.message);
+        navigate("/login");
       }
     };
 
-    fetchUserData();
+    fetchUser();
   }, [navigate]);
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Eliminar el token
-    navigate("/login"); // Redirigir al login
+    logoutUser();
+    navigate("/login");
   };
-
-  if (loading) return <p style={{ color: "white" }}>Cargando...</p>;
+  if (!user) return <p style={{ color: "white" }}>Cargando...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
@@ -75,7 +45,7 @@ const Home = () => {
         </li>
       </nav>
       <main className="container-main">
-        <h1>Bienvenido,{user?.usename}!</h1>
+        <h1>Bienvenido,{user?.username || "Usuario"}!</h1>
       </main>
       <article className="container-article"></article>
       <footer className="container-footer"></footer>

@@ -4,9 +4,11 @@ import { Password } from "./Password";
 import { Register } from "./Register";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../services/authService";
 
 const Login = () => {
   const [loginRegister, setLoginRegister] = useState("form-register");
+
   const usuarioLogin = () => {
     setLoginRegister(
       loginRegister === "form-register" ? "form-back-register" : "form-register"
@@ -21,70 +23,17 @@ const Login = () => {
     );
   };
 
-  const [user, setUser] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    setError(null); // Limpia errores previos
-
-    if (!user || !password) {
-      setTildeError("*");
-      setError("Por favor, completa todos los campos.");
-
-      return;
-    }
+    setError(null);
+    if (!username || !password) return setError("Completa todos los campos.");
 
     try {
-      const formData = new URLSearchParams();
-      formData.append("username", user);
-      formData.append("password", password);
-
-      const response = await fetch(
-        "https://user-manager-mi2a.onrender.com/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: formData,
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Usuario o contraseña incorrectos");
-      }
-
-      const data = await response.json();
-      {
-        /**console.log(data);  */
-      }
-
-      const token = data.access_token;
-      {
-        /* console.log("Token obtenido:", token); * */
-      }
-
-      localStorage.setItem("token", token);
-
-      const userResponse = await fetch(
-        "https://user-manager-mi2a.onrender.com/user/me",
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (!userResponse.ok) {
-        throw new Error("Error al obtener datos del usuario");
-      }
-
-      const userData = await userResponse.json();
-      {
-        /** console.log("Datos del usuario:", userData);  */
-      }
-
+      await loginUser(username, password);
       navigate("/home");
     } catch (err) {
       setError(err.message);
@@ -105,8 +54,8 @@ const Login = () => {
               type="text"
               placeholder="Usuario"
               className="form-input"
-              value={user}
-              onChange={(e) => setUser(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
 
             <input
