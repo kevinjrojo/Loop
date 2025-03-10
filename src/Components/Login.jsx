@@ -45,11 +45,9 @@ const Login = () => {
         <img src={logo} alt="" className="logo-loop" />
       </article>
       <nav className="form-login-conteiner">
-        <input type="checkbox" id="signup-toggle" />
         <form className="form-login">
           <div className="form-front">
             <h1 className="form-title">Loop</h1>
-
             <input
               type="text"
               placeholder="Usuario"

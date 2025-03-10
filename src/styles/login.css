@@ -33,7 +33,6 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
-  position: absolute;
   backface-visibility: visible;
   padding: 65px 45px;
   border-radius: 15px;
@@ -136,7 +135,10 @@
 
 @media (300px <= width <= 900px) {
   .login-conteiner {
-    grid-template-columns: auto;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    height: 70vh;
   }
   .conteiner-logo {
     text-align: center;
@@ -147,14 +149,16 @@
   }
   .form-login-conteiner {
     display: flex;
-    justify-content: center;
-    align-items: start;
+    justify-content: start;
+    margin: auto;
+    align-items: center;
+    margin-top: 5%;
   }
   .form-login {
     display: flex;
     justify-content: center;
     align-items: center;
-    transform-style: preserve-3d;
+    transform-style: flat;
     transition: all 1s ease;
   }
 }

@@ -15,12 +15,9 @@ const PrivateRoute = ({ children }) => {
 
 const App = () => {
   return (
-    <Router>
+    <Router basename="/Loop">
       <Routes>
-        {/* Página de login (ruta pública) */}
         <Route path="/" element={<Login />} />
-
-        {/* Página de inicio (ruta protegida) */}
         <Route
           path="/home"
           element={
@@ -29,7 +26,6 @@ const App = () => {
             </PrivateRoute>
           }
         />
-        {/* Ruta por defecto si la URL no existe */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
