@@ -1,57 +1,69 @@
-.login-conteiner {
+.login-container {
   display: grid;
   grid-template-columns: 5fr 5fr;
   justify-content: space-evenly;
   height: 100vh;
   background-color: #212121;
 }
-.login-conteiner-loading {
-  display: none;
-}
-.conteiner-logo {
+
+.container-logo {
   text-align: center;
   margin: auto;
 }
 .logo-loop {
   max-width: 80%;
 }
-.form-login-conteiner {
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.form-login {
+
+.form {
   display: flex;
   justify-content: center;
   align-items: center;
-  transform-style: preserve-3d;
+
   transition: all 1s ease;
 }
-.form-login .form-front {
+
+.form .form_front {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
-  backface-visibility: visible;
+  position: absolute;
+  backface-visibility: hidden;
   padding: 65px 45px;
   border-radius: 15px;
   box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 1),
     inset -1px -1px 5px rgba(255, 255, 255, 0.6);
 }
 
-.form-title {
+.form .form_back {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  position: absolute;
+  backface-visibility: hidden;
+  transform: rotateY(-180deg);
+  padding: 65px 45px;
+  border-radius: 15px;
+  box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 1),
+    inset -1px -1px 5px rgba(255, 255, 255, 0.6);
+}
+
+.form_details {
+  font-size: 25px;
+  font-weight: 600;
   padding-bottom: 10px;
   color: white;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.form-title-name {
-  color: white;
-}
-.form-title-email {
-  color: white;
-}
-.form-input {
+
+.input {
   width: 245px;
   min-height: 45px;
   color: #fff;
@@ -64,20 +76,24 @@
   box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
     1px 1px 10px rgba(255, 255, 255, 0.6);
 }
-.form-input::placeholder {
+
+.input::placeholder {
   color: #999;
 }
-.form-i.form-input.form-input::placeholder {
+
+.input:focus.input::placeholder {
   transition: 0.3s;
   opacity: 0;
 }
-.form-input:focus {
+
+.input:focus {
   transform: scale(1.05);
   box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
     1px 1px 10px rgba(255, 255, 255, 0.6), inset 2px 2px 10px rgba(0, 0, 0, 1),
     inset -1px -1px 5px rgba(255, 255, 255, 0.6);
 }
-.form-btn-submit {
+
+.btn {
   padding: 10px 35px;
   cursor: pointer;
   background-color: #212121;
@@ -87,67 +103,63 @@
     1px 1px 10px rgba(255, 255, 255, 0.6);
   color: #fff;
   font-size: 15px;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
   font-weight: bold;
   transition: 0.35s;
 }
-.form-btn-submit:hover {
+
+.btn:hover {
   transform: scale(1.05);
   box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
     1px 1px 10px rgba(255, 255, 255, 0.6), inset 2px 2px 10px rgba(0, 0, 0, 1),
     inset -1px -1px 5px rgba(255, 255, 255, 0.6);
 }
 
-.form-btn-submit:focus {
+.btn:focus {
   transform: scale(1.05);
   box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
     1px 1px 10px rgba(255, 255, 255, 0.6), inset 2px 2px 10px rgba(0, 0, 0, 1),
     inset -1px -1px 5px rgba(255, 255, 255, 0.6);
 }
-.form-login .switch-login {
+
+.form .switch {
   font-size: 13px;
   color: white;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  margin-top: 5px;
+  margin-top: 0px;
+  text-align: center;
 }
-
-.form-login .switch-login .signup-tog-login {
-  font-weight: 600;
+.form .switch .signup_tog {
+  font-weight: 700;
   cursor: pointer;
   text-decoration: underline;
+  color: aqua;
   margin-left: 5px;
-  color: rgb(96, 222, 245);
 }
-.switch-login-password {
-  transition: color 0.35s;
-  font-size: 14px;
-  color: white;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+
+.container #signup_toggle {
+  display: none;
+}
+.password {
+  font-size: 15px;
   cursor: pointer;
-}
-.switch-login-password:hover {
-  color: rgb(96, 222, 245);
-  transition: 0.35s;
+  text-decoration: none;
+  color: white;
 }
 
 @media (300px <= width <= 900px) {
-  .login-conteiner {
+  .login-container {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(2, 1fr);
     height: 70vh;
   }
-  .conteiner-logo {
+  .container-logo {
     text-align: center;
     margin-top: 5%;
   }
   .logo-loop {
     max-width: 20%;
   }
-  .form-login-conteiner {
+  .form-login-container {
     display: flex;
     justify-content: start;
     margin: auto;
