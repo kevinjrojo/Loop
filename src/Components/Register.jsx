@@ -2,11 +2,12 @@ import { Link, useNavigate } from "react-router-dom";
 import "../styles/register.css";
 import { useState } from "react";
 import logo from "../assets/bucle-feliz.webp";
+import { registerUser } from "../services/authService";
 
 const Register = () => {
   const [userData, setUserData] = useState({
-    fullName: "",
-    userName: "",
+    full_name: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -28,26 +29,14 @@ const Register = () => {
       return;
     }
     try {
-      const response = await fetch("https://user-manager-mi2a.onrender.com", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName: userData.fullName,
-          username: userData.userName,
-          email: userData.email,
-          password: userData.password,
-        }),
-      });
+      const { full_name, username, email, password, confirmPassword } =
+        userData;
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || "Error en el registro");
-      }
-
-      navigate("/"); // Redirige al login después del registro exitoso
+      await registerUser(full_name, username, email, password, confirmPassword);
+      navigate("/");
     } catch (err) {
       setError(err.message);
+      console.log(err);
     }
   };
 
@@ -59,17 +48,29 @@ const Register = () => {
       <div className="container">
         <form className="form">
           <div className="form_front">
-            <h1 className="form_details">Register</h1>
+            <h1 className="form_details">Loop</h1>
             {error && (
               <p className="error" style={{ color: "red" }}>
                 {error}
               </p>
             )}
+            <p className="password">
+              Completa el con tus datos para poder registrarte.
+            </p>
             <input
               type="text"
-              name="fullName"
+              name="full_name"
               placeholder="Nombre completo"
-              value={userData.fullName}
+              value={userData.full_name}
+              onChange={handleChange}
+              required
+              className="input"
+            />
+            <input
+              type="text"
+              name="username"
+              placeholder="Nombre de usuario"
+              value={userData.username}
               onChange={handleChange}
               required
               className="input"
@@ -101,7 +102,7 @@ const Register = () => {
               onChange={handleChange}
               required
             />
-            <button type="submit" className="btn">
+            <button type="submit" onClick={handleSubmit} className="btn">
               Registrarte
             </button>
             <p className="switch">

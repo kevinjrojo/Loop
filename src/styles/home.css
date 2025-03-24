@@ -29,13 +29,19 @@
   color: white;
   list-style: none;
   cursor: pointer;
-
-  height: 25px;
   margin: auto;
+  place-content: center;
+  text-align: center;
+  width: 80%;
+  height: 30px;
+}
+.browser-loop {
+  text-align: center;
+  list-style: none;
 }
 .browser-loop-close:hover {
-  color: rgb(255, 255, 255);
-  background-color: rgb(243, 37, 37);
+  background-color: rgba(255, 255, 255, 0.24);
+  border-radius: 10px;
 }
 .container-main {
   grid-column: span 3 / span 3;

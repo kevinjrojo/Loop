@@ -31,7 +31,8 @@ const Login = () => {
       <div className="container">
         <form className="form">
           <div className="form_front">
-            <h1 className="form_details">Login</h1>
+            <h1 className="form_details">Loop</h1>
+            {error && <p style={{ color: "red" }}>{error}</p>}
             <input
               type="text"
               placeholder="Usuario"
@@ -51,7 +52,7 @@ const Login = () => {
             <button type="button" className="btn" onClick={handleLogin}>
               Login
             </button>
-            <p className="switch">
+            <div className="switch">
               ¿No tienes una cuenta?
               <Link
                 className="signup_tog"
@@ -71,7 +72,7 @@ const Login = () => {
                   ¿Olvidaste tu contraseña?
                 </Link>
               </p>
-            </p>
+            </div>
           </div>
         </form>
       </div>

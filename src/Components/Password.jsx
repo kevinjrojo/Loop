@@ -10,9 +10,9 @@ const Password = () => {
       <div className="container">
         <form className="form">
           <div className="form_front">
-            <h1 className="form_details">Password</h1>
-            <p className="switch">
-              Introduce el correo electrónico asociados a tu <br /> cuenta para
+            <h1 className="form_details">Loop</h1>
+            <p className="password">
+              Introduce el correo electrónico asociados <br /> a tu cuenta para
               cambiar tu contraseña.
             </p>
             <input

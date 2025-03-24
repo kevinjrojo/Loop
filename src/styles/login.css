@@ -143,6 +143,7 @@
   cursor: pointer;
   text-decoration: none;
   color: white;
+  text-align: center;
 }
 
 @media (300px <= width <= 900px) {

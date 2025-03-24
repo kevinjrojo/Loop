@@ -40,3 +40,42 @@ export const getUserData = async () => {
 export const logoutUser = () => {
   localStorage.removeItem("token");
 };
+export const registerUser = async (
+  full_name,
+  username,
+  email,
+  password,
+  confirmPassword
+) => {
+  const formData = new URLSearchParams();
+  formData.append("full_name", full_name);
+  formData.append("username", username);
+  formData.append("email", email);
+  formData.append("password", password);
+  formData.append("confirmPassword", confirmPassword);
+
+  try {
+    const response = await fetch(`${API_URL}/user/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user: {
+          full_name: full_name,
+          username: username,
+          email: email,
+          password: password,
+        },
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Error en el registro");
+    }
+  } catch (err) {
+    setError(err.message);
+    console.log(err);
+    throw err;
+  }
+};
