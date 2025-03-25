@@ -23,7 +23,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   transition: all 1s ease;
 }
 
@@ -34,7 +33,6 @@
   align-items: center;
   gap: 20px;
   position: absolute;
-  backface-visibility: hidden;
   padding: 65px 45px;
   border-radius: 15px;
   box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 1),
@@ -48,8 +46,7 @@
   align-items: center;
   gap: 20px;
   position: absolute;
-  backface-visibility: hidden;
-  transform: rotateY(-180deg);
+
   padding: 65px 45px;
   border-radius: 15px;
   box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 1),

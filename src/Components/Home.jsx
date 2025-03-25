@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUserData, logoutUser } from "../services/authService";
 import { useState } from "react";
+import Header from "./header";
 
 const Home = () => {
   const [user, setUser] = useState(null);
@@ -15,7 +16,7 @@ const Home = () => {
       try {
         const userData = await getUserData();
 
-        setUser(userData);
+        setUser(userData.data);
       } catch (err) {
         setError(err.message);
         navigate("/login");
@@ -29,12 +30,14 @@ const Home = () => {
     logoutUser();
     navigate("/login");
   };
-  if (!user) return <p style={{ color: "white" }}>Cargando...</p>;
+  if (!user) return <p className="loader"></p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
     <div className="container-home">
-      <header className="container-header-history"></header>
+      <header className="container-header-history">
+        <Header />
+      </header>
       <nav className="container-nav-list">
         <img src={logo} alt="logo-loop" className="home-logo" />
         <li className="browser-loop">Inicio</li>
@@ -45,7 +48,7 @@ const Home = () => {
         </li>
       </nav>
       <main className="container-main">
-        <h1>Bienvenido,{user?.username || "Usuario"}!</h1>
+        <h1>Bienvenido {user?.username || "Usuario"}!</h1>
       </main>
       <article className="container-article"></article>
       <footer className="container-footer"></footer>

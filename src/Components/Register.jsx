@@ -41,7 +41,7 @@ const Register = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className="register-container">
       <article className="container-logo">
         <img src={logo} alt="Logo Loop" className="logo-loop" />
       </article>

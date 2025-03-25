@@ -1,0 +1,19 @@
+.register-container {
+  display: grid;
+  grid-template-columns: 5fr 5fr;
+  justify-content: space-evenly;
+  height: 100vh;
+  background-color: #212121;
+}
+
+@media (300px <= width <= 900px) {
+  .register-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    justify-content: space-evenly;
+    gap: 350px;
+    height: 0;
+    background-color: #212121;
+  }
+}
