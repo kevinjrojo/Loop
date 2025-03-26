@@ -9,6 +9,7 @@ import Login from "./Components/Login.jsx";
 import Home from "./Components/Home.jsx";
 import Register from "./Components/Register.jsx";
 import Password from "./Components/Password.jsx";
+import Profile from "./Components/Profile.jsx";
 
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/password" element={<Password />} />
+        <Route path="/profile" element={<Profile />} />
         <Route
           path="/home"
           element={

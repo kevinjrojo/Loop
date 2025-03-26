@@ -73,35 +73,49 @@
   grid-column-start: 2;
   grid-row-start: 7;
 }
-.loader {
-  width: 2rem;
-  height: 2rem;
-  clear: both;
-  margin: 1rem auto;
-  border-radius: 50%;
-  border-left: 0 #000 solid;
-  border-right: 0 #000 solid;
-  animation: spSphere 1s infinite linear;
+.icon-home {
+  display: none;
 }
 
-@keyframes spSphere {
-  0% {
-    border-left: 0 #000 solid;
-    border-right: 0 #000 solid;
+@media (300px <= width <= 900px) {
+  .container-home {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px;
   }
-
-  33% {
-    border-left: 2rem #000 solid;
-    border-right: 0 #000 solid;
+  .container-header-history {
+    grid-column: span 1 / span 1;
+    grid-column-start: 1;
+    grid-row-start: 1;
   }
-
-  34% {
-    border-left: 0 #000 solid;
-    border-right: 2rem #000 solid;
+  .container-nav-list {
+    grid-row: span 3 / span 3;
+    grid-column-start: 1;
+    grid-row-start: 3;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 3fr);
+    height: 0;
+    margin: auto;
+    width: 100%;
   }
-
-  66% {
-    border-left: 0 #000 solid;
-    border-right: 0 #000 solid;
+  .container-main {
+    grid-column: span 3 / span 3;
+    grid-row: span 3 / span 3;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    margin: auto;
+  }
+  .home-logo {
+    display: none;
+  }
+  .browser-loop {
+    display: none;
+  }
+  .icon-home {
+    display: inline;
+    max-width: 40px;
+    margin: auto;
   }
 }
