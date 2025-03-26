@@ -49,8 +49,9 @@ const Home = () => {
         <img src={home} alt="home" className="icon-home" />
         <li className="browser-loop">Notificaciones</li>
         <img src={notifications} alt="home" className="icon-home" />
-        <Link to="/profile" className="browser-loop">
-          Perfil
+        <Link to="/profile">
+          <li className="browser-loop">Perfil</li>
+
           <img src={profile} alt="home" className="icon-home" />
         </Link>
 

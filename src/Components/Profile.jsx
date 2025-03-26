@@ -9,10 +9,11 @@ import { Link } from "react-router-dom";
 const Profile = () => {
   return (
     <div>
-      <h1>Este es tu perfil</h1>
+      <h1 style={{ color: "white" }}>Este es tu perfil</h1>
       <nav className="container-nav-list-profile">
-        <Link to="/home" className="browser-loop">
-          Inicio
+        <Link to="/home">
+          <li className="browser-loop"> Inicio</li>
+
           <img src={home} alt="home" className="icon-home" />
         </Link>
         <li className="browser-loop">Notificaciones</li>
