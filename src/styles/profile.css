@@ -40,14 +40,15 @@
     grid-row-start: 1;
   }
   .container-nav-list-profile {
-    grid-row: auto;
-    grid-column-start: 1;
-    grid-row-start: 3;
+    position: fixed;
+    gap: 8%;
+    width: 100%;
+    top: 93%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    height: auto;
-    place-items: center;
+    grid-template-rows: repeat(1, 1fr);
+    height: none;
+    text-align: center;
   }
   .container-main-profile {
     grid-column: auto;

@@ -80,7 +80,7 @@
   grid-column-start: 2;
   grid-row-start: 7;
 }
-.icon-home {
+.icon-loop {
   display: none;
 }
 .history-btn-header {
@@ -142,21 +142,19 @@
     grid-row-start: 1;
   }
   .container-nav-list {
-    grid-row: auto;
-    grid-column-start: 1;
-    grid-row-start: 3;
+    position: fixed;
+    gap: 8%;
+    width: 100%;
+    top: 93%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    height: auto;
-
-    place-items: center;
+    grid-template-rows: repeat(1, 1fr);
+    height: none;
+    text-align: center;
   }
   .container-main {
-    grid-column: auto;
-    grid-row: auto;
     grid-column-start: 1;
-    grid-row-start: 2;
+    grid-row-start: 3;
     margin: auto;
   }
   .container-footer {
@@ -168,7 +166,7 @@
   .browser-loop {
     display: none;
   }
-  .icon-home {
+  .icon-loop {
     display: inline;
     max-width: 40px;
     margin: auto;

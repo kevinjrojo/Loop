@@ -15,19 +15,19 @@ const Friends = () => {
         <img src={logo} alt="logo-loop" className="home-logo" />
         <Link to="/home" className="browser-loop-link">
           <li className="browser-loop"> Inicio</li>
-          <img src={home} alt="home" className="icon-home" />
+          <img src={home} alt="home" className="icon-loop" />
         </Link>
         <Link to="/notifications" className="browser-loop-link">
           <li className="browser-loop">Notificaciones</li>
-          <img src={notifications} alt="notifications" className="icon-home" />
+          <img src={notifications} alt="notifications" className="icon-loop" />
         </Link>
         <Link to="/profile" className="browser-loop-link">
           <li className="browser-loop">Perfil</li>
-          <img src={profile} alt="profile" className="icon-home" />
+          <img src={profile} alt="profile" className="icon-loop" />
         </Link>
         <Link to="/friends" className="browser-loop-link">
           <li className="browser-loop">Amigos</li>
-          <img src={friends} alt="friends" className="icon-home" />
+          <img src={friends} alt="friends" className="icon-loop" />
         </Link>
       </nav>
       <main className="container-main-friends">

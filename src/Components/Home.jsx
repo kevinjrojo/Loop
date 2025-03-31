@@ -78,21 +78,21 @@ const Home = () => {
         <img src={logo} alt="logo-loop" className="home-logo" />
         <Link to="/home" className="browser-loop-link">
           <li className="browser-loop">Inicio</li>
-          <img src={home} alt="home" className="icon-home" />
+          <img src={home} alt="home" className="icon-loop" />
         </Link>
         <Link to="/notifications" className="browser-loop-link">
-          <img src={notifications} alt="home" className="icon-home" />
+          <img src={notifications} alt="home" className="icon-loop" />
           <li className="browser-loop">Notificaciones</li>
         </Link>
         <Link to="/profile" className="browser-loop-link">
-          <img src={profile} alt="home" className="icon-home" />
+          <img src={profile} alt="home" className="icon-loop" />
           <li className="browser-loop">Perfil</li>
         </Link>
         <Link to="/Friends" className="browser-loop-link">
           <img
             src={friends}
             alt="home"
-            className="icon-home"
+            className="icon-loop"
             onClick={handleLogout}
           />
           <li className="browser-loop" onClick={handleLogout}>
