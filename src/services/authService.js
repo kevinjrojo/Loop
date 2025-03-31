@@ -1,4 +1,9 @@
 const API_URL = "https://user-manager-mi2a.onrender.com";
+//const CLOUDINARY_API_KEY = `cloudinary://${apiKey}:${apiSecret}@${cloudName}`;
+
+const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+const apiKey = import.meta.env.VITE_CLOUDINARY_API_KEY;
+const apiSecret = import.meta.env.VITE_CLOUDINARY_API_SECRET;
 
 export const loginUser = async (username, password) => {
   const formData = new URLSearchParams();
