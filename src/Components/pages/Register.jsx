@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
-import "../styles/register.css";
+import "../../styles/register.css";
 import { useState } from "react";
-import logo from "../assets/bucle-feliz.webp";
-import { registerUser } from "../services/authService";
+import logo from "../../assets/bucle-feliz.webp";
+import { registerUser } from "../../services/authService";
 
 const Register = () => {
   const [userData, setUserData] = useState({
@@ -41,7 +41,7 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container">
+    <div className="register-../container">
       <article className="container-logo">
         <img src={logo} alt="Logo Loop" className="logo-loop" />
       </article>

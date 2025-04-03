@@ -5,13 +5,13 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import Login from "./Components/Login.jsx";
-import Home from "./Components/Home.jsx";
-import Register from "./Components/Register.jsx";
-import Password from "./Components/Password.jsx";
-import Profile from "./Components/Profile.jsx";
-import Notifications from "./Components/Notifications.jsx";
-import Friends from "./Components/Friends.jsx";
+import Login from "./Components/pages/Login.jsx";
+import Home from "./Components/pages/Home.jsx";
+import Register from "./Components/pages/Register.jsx";
+import Password from "./Components/pages/Password.jsx";
+import Profile from "./Components/pages/Profile.jsx";
+import Notifications from "./Components/pages/Notifications.jsx";
+import Friends from "./Components/pages/Friends.jsx";
 
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem("token");

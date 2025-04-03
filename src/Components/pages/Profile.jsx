@@ -1,9 +1,9 @@
-import "../styles/profile.css";
-import logo from "../assets/bucle-feliz.webp";
-import friends from "../assets/friends.webp";
-import home from "../assets/home.webp";
-import notifications from "../assets/notifications.webp";
-import profile from "../assets/profile.webp";
+import "../../styles/profile.css";
+import logo from "../../assets/bucle-feliz.webp";
+import friends from "../../assets/friends.webp";
+import home from "../../assets/home.webp";
+import notifications from "../../assets/notifications.webp";
+import profile from "../../assets/profile.webp";
 import { Link } from "react-router-dom";
 
 const Profile = () => {

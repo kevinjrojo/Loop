@@ -1,8 +1,8 @@
-import logo from "../assets/bucle-feliz.webp";
-import "../styles/login.css";
+import logo from "../../assets/bucle-feliz.webp";
+import "../../styles/login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../services/authService";
+import { loginUser } from "../../services/authService";
 import { Link } from "react-router-dom";
 
 const Login = () => {

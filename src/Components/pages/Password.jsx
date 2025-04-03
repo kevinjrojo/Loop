@@ -1,5 +1,5 @@
-import "../styles/password.css";
-import logo from "../assets/bucle-feliz.webp";
+import "../../styles/password.css";
+import logo from "../../assets/bucle-feliz.webp";
 import { Link } from "react-router-dom";
 const Password = () => {
   return (

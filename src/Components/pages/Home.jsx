@@ -1,17 +1,18 @@
-import "../styles/home.css";
-import logo from "../assets/bucle-feliz.webp";
-import friends from "../assets/friends.webp";
-import home from "../assets/home.webp";
-import notifications from "../assets/notifications.webp";
-import profile from "../assets/profile.webp";
+import "../../styles/home.css";
+import logo from "../../assets/bucle-feliz.webp";
+import friends from "../../assets/friends.webp";
+import home from "../../assets/home.webp";
+import notifications from "../../assets/notifications.webp";
+import profile from "../../assets/profile.webp";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { getUserData, logoutUser } from "../services/authService";
+import { getUserData, logoutUser } from "../.././services/authService";
 
 const Home = () => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const fileInputRef = useRef(null);
+  const [cancelHistory, setCancelHistory] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,10 +44,16 @@ const Home = () => {
       const newImageUrl = URL.createObjectURL(file);
       setImageUrl(newImageUrl);
       setIsUploaded(true);
+      setCancelHistory(true);
     }
   };
   const handleButtonClick = () => {
     fileInputRef.current.click();
+  };
+  const handleCancelHistory = () => {
+    setImageUrl(null); // Borra la imagen
+    setIsUploaded(false); // Oculta la interfaz de la historia
+    setCancelHistory(false); // Cambia la clase si es necesario
   };
 
   if (!user) return <p style={{ color: "white" }}>Cargando...</p>;
@@ -65,11 +72,22 @@ const Home = () => {
           +
         </button>
         {isUploaded && (
-          <div className="cotainer-history-img-loop">
+          <div
+            className={
+              cancelHistory ? "cotainer-history-img-loop" : "cancelHistory"
+            }
+          >
             <article className="overlay">
               <img src={imageUrl} alt="Uploaded" className="history-img-loop" />
-              <button className="btn-history-loop">Editar</button>
-              <button className="btn-history-loop">Compartir</button>
+              <section className="container-button-histoty-img">
+                <button
+                  className="btn-history-loop"
+                  onClick={handleCancelHistory}
+                >
+                  ❌
+                </button>
+                <button className="btn-history-loop">✔️</button>
+              </section>
             </article>
           </div>
         )}
