@@ -51,9 +51,9 @@ const Home = () => {
     fileInputRef.current.click();
   };
   const handleCancelHistory = () => {
-    setImageUrl(null); // Borra la imagen
-    setIsUploaded(false); // Oculta la interfaz de la historia
-    setCancelHistory(false); // Cambia la clase si es necesario
+    setImageUrl(null);
+    setIsUploaded(false);
+    setCancelHistory(false);
   };
 
   if (!user) return <p style={{ color: "white" }}>Cargando...</p>;

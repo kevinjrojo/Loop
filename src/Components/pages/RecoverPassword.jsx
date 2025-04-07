@@ -1,7 +1,9 @@
 import "../../styles/password.css";
 import logo from "../../assets/bucle-feliz.webp";
 import { Link } from "react-router-dom";
-const Password = () => {
+import InputsPassword from "../InputsPassword";
+
+const RecoverPassword = () => {
   return (
     <div className="password-container">
       <article className="container-logo">
@@ -12,18 +14,16 @@ const Password = () => {
           <div className="form_front">
             <h1 className="form_details">Loop</h1>
             <p className="password">
-              Introduce el correo electrónico asociados <br /> a tu cuenta para
-              cambiar tu contraseña.
+              Te enviamos un codigo de verificacion a tu correo,copia y pega el
+              codigo debajo.
             </p>
-            <input
-              type="email"
-              required
-              className="input"
-              placeholder="Correo electrónico"
-            />
-            <Link to="/recover-password" className="btn">
-              Enviar
-            </Link>
+            <nav className="container-input-recover-password">
+              <InputsPassword />
+            </nav>
+
+            <button type="button" className="btn">
+              Enviar validación
+            </button>
             <Link htmlFor="signup_toggle" to="/" className="password">
               Volver al inicio de sesión
             </Link>
@@ -33,4 +33,5 @@ const Password = () => {
     </div>
   );
 };
-export default Password;
+
+export default RecoverPassword;

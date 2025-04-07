@@ -12,6 +12,7 @@ import Password from "./Components/pages/Password.jsx";
 import Profile from "./Components/pages/Profile.jsx";
 import Notifications from "./Components/pages/Notifications.jsx";
 import Friends from "./Components/pages/Friends.jsx";
+import RecoverPassword from "./Components/pages/RecoverPassword.jsx";
 
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/friends" element={<Friends />} />
+        <Route path="/recover-password" element={<RecoverPassword />} />
         <Route
           path="/home"
           element={

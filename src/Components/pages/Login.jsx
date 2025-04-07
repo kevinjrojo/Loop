@@ -9,11 +9,15 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
     setError(null);
-    if (!username || !password) return setError("Completa todos los campos.");
+    setLoading(!loading);
+    if (!username || !password) return;
+    setError("Completa todos los campos.");
+    setLoading(!loading);
 
     try {
       await loginUser(username, password);
@@ -24,58 +28,70 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <article className="container-logo">
-        <img src={logo} alt="Logo Loop" className="logo-loop" />
-      </article>
-      <div className="container">
-        <form className="form">
-          <div className="form_front">
-            <h1 className="form_details">Loop</h1>
-            {error && <p style={{ color: "red" }}>{error}</p>}
-            <input
-              type="text"
-              placeholder="Usuario"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-              className="input"
-            />
-            <input
-              type="password"
-              placeholder="Contraseña"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="input"
-            />
-            <button type="button" className="btn" onClick={handleLogin}>
-              Login
-            </button>
-            <div className="switch">
-              ¿No tienes una cuenta?
-              <Link
-                className="signup_tog"
-                htmlFor="signup_toggle"
-                to="/register"
-              >
-                Regístrate
-              </Link>
-              <br />
-              <br />
-              <p className="switch">
+    <div>
+      <nav className={loading ? "login-container" : "loading"}>
+        <svg
+          viewBox="0 0 16 16"
+          height={48}
+          width={48}
+          className="windows-loading-spinner"
+        >
+          <circle r="7px" cy="8px" cx="8px" />
+        </svg>
+      </nav>
+      <main className={loading ? " loading" : "login-container"}>
+        <article className="container-logo">
+          <img src={logo} alt="Logo Loop" className="logo-loop" />
+        </article>
+        <div className="container">
+          <form className="form">
+            <div className="form_front">
+              <h1 className="form_details">Loop</h1>
+              {error && <p style={{ color: "red" }}>{error}</p>}
+              <input
+                type="text"
+                placeholder="Usuario"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                className="input"
+              />
+              <input
+                type="password"
+                placeholder="Contraseña"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="input"
+              />
+              <button type="button" className="btn" onClick={handleLogin}>
+                Login
+              </button>
+              <div className="switch">
+                ¿No tienes una cuenta?
                 <Link
+                  className="signup_tog"
                   htmlFor="signup_toggle"
-                  to="/password"
-                  className="password"
+                  to="/register"
                 >
-                  ¿Olvidaste tu contraseña?
+                  Regístrate
                 </Link>
-              </p>
+                <br />
+                <br />
+                <p className="switch">
+                  <Link
+                    htmlFor="signup_toggle"
+                    to="/password"
+                    className="password"
+                  >
+                    ¿Olvidaste tu contraseña?
+                  </Link>
+                </p>
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
+      </main>
     </div>
   );
 };
