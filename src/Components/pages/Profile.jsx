@@ -10,7 +10,20 @@ const Profile = () => {
   return (
     <div className="container-profile">
       <header className="container-header-profile">
-        <h1 style={{ color: "white" }}>Este es tu perfil</h1>
+        <div className="container-name-profile">
+       <img src={home} alt="" className="img-profile"/>
+       <h2 className="name-profile-user">Username</h2>
+       </div>
+       <article className="container-infomations-user">
+        <ul className="number-information-user">145</ul>
+        <ul className="number-information-user">4</ul>
+        <ul className="number-information-user">20</ul>
+       </article>
+       <article className="container-infomations-user">
+        <ul className="text-infomations-user">Seguidores</ul>
+        <ul className="text-infomations-user">Publicaiones</ul>
+        <ul className="text-infomations-user">Seguidos</ul>
+       </article>
       </header>
       <nav className="container-nav-list-profile">
         <img src={logo} alt="logo-loop" className="home-logo" />
@@ -32,10 +45,7 @@ const Profile = () => {
         </Link>
       </nav>
       <main className="container-main-profile">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti
-        distinctio sint voluptatibus est, illo tempora praesentium suscipit
-        vero, assumenda repellendus expedita debitis, laudantium nisi dolorum
-        culpa. Nesciunt et earum ducimus
+
       </main>
     </div>
   );
