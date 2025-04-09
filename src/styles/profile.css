@@ -1,16 +1,36 @@
 .container-profile {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(5, 1fr);
   gap: 3px;
   color: white;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 .container-header-profile {
-  grid-column: span 4 / span 4;
-  grid-row: span 2 / span 2;
-  grid-column-start: 2;
-  grid-row-start: 1;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ margin: 5px;
+}
+.img-profile{
+  max-width: 100px;
+  padding: 5px;
+  display: flex;
+  margin: auto;
+  border: 2px aqua solid;
+  border-radius: 50px;
+}
+.container-infomations-user{
+  display: flex;
+
+}
+.number-information-user{
+  margin: 30px;
+  font-size: 25px;
+}
+.text-infomations-user{
+
 }
 .container-nav-list-profile {
   display: grid;
@@ -20,6 +40,7 @@
   grid-template-columns: repeat(1, 1fr);
   grid-template-rows: repeat(6, 1fr);
   height: 50vh;
+  width: 80%;
   color: white;
 }
 
@@ -27,7 +48,7 @@
   grid-column: span 4 / span 4;
   grid-row: span 3 / span 3;
   grid-column-start: 2;
-  grid-row-start: 3;
+  grid-row-start: 5;
 }
 @media (300px <= width <= 900px) {
   .container-profile {
