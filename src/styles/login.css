@@ -185,8 +185,7 @@
 @media (300px <= width <= 900px) {
   .login-container {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     height: 70vh;
   }
   .container-logo {

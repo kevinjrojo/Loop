@@ -14,16 +14,16 @@ const RecoverPassword = () => {
           <div className="form_front">
             <h1 className="form_details">Loop</h1>
             <p className="password">
-              Te enviamos un codigo de verificacion a tu correo,copia y pega el
-              codigo debajo.
+              Te enviamos un codigo de verificacion a <br /> tu correo,copia y
+              pega el codigo debajo.
             </p>
             <nav className="container-input-recover-password">
               <InputsPassword />
             </nav>
 
-            <button type="button" className="btn">
+            <Link className="btn" to="/change-password">
               Enviar validación
-            </button>
+            </Link>
             <Link htmlFor="signup_toggle" to="/" className="password">
               Volver al inicio de sesión
             </Link>

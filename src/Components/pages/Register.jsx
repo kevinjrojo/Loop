@@ -55,7 +55,7 @@ const Register = () => {
               </p>
             )}
             <p className="password">
-              Completa el con tus datos para poder registrarte.
+              Completa el con tus datos <br /> para poder registrarte.
             </p>
             <input
               type="text"

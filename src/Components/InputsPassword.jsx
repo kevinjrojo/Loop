@@ -6,6 +6,7 @@ const InputsPassword = () => {
   const handleInput = (e, index) => {
     if (e.key !== "Backspace" && index < 4)
       return inputs.current[index + 1]?.focus();
+    console.log(e.key);
   };
   const handleInputCancel = (e, index) => {
     if (e.key === "Backspace" && index > 0 && inputs.current[index].value == "")
@@ -14,81 +15,24 @@ const InputsPassword = () => {
 
   return (
     <div>
-      <input
-        ref={(i) => {
-          inputs.current[0] = i;
-        }}
-        type="text"
-        required
-        className="input-password"
-        maxLength={1}
-        onKeyUp={(e) => {
-          handleInput(e, 0);
-        }}
-        onKeyDown={(e) => {
-          handleInputCancel(e, 0);
-        }}
-      />
-      <input
-        ref={(i) => {
-          inputs.current[1] = i;
-        }}
-        type="text"
-        required
-        className="input-password"
-        maxLength={1}
-        onKeyUp={(e) => {
-          handleInput(e, 1);
-        }}
-        onKeyDown={(e) => {
-          handleInputCancel(e, 1);
-        }}
-      />
-      <input
-        ref={(i) => {
-          inputs.current[2] = i;
-        }}
-        type="text"
-        required
-        className="input-password"
-        maxLength={1}
-        onKeyUp={(e) => {
-          handleInput(e, 2);
-        }}
-        onKeyDown={(e) => {
-          handleInputCancel(e, 2);
-        }}
-      />
-      <input
-        ref={(i) => {
-          inputs.current[3] = i;
-        }}
-        type="text"
-        required
-        className="input-password"
-        maxLength={1}
-        onKeyUp={(e) => {
-          handleInput(e, 3);
-        }}
-        onKeyDown={(e) => {
-          handleInputCancel(e, 3);
-        }}
-      />
-      <input
-        ref={(i) => {
-          inputs.current[4] = i;
-        }}
-        type="text"
-        required
-        className="input-password"
-        maxLength={1}
-        onKeyUp={(e) => {
-          handleInput(e, 4);
-        }}
-        onKeyDown={(e) => {
-          handleInputCancel(e, 4);
-        }}
-      />
+      {[...Array(5)].map((_, index) => (
+        <input
+          key={index}
+          ref={(i) => {
+            inputs.current[index] = i;
+          }}
+          type="text"
+          required
+          className="input-password"
+          maxLength={1}
+          onKeyUp={(e) => {
+            handleInput(e, index);
+          }}
+          onKeyDown={(e) => {
+            handleInputCancel(e, index);
+          }}
+        />
+      ))}
     </div>
   );
 };

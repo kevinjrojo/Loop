@@ -9,11 +9,8 @@
 @media (300px <= width <= 900px) {
   .register-container {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    justify-content: space-evenly;
-    gap: 350px;
-    height: 0;
+    grid-template-columns: 1fr;
+    height: 70vh;
     background-color: #212121;
   }
 }
