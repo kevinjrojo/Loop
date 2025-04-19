@@ -6,27 +6,21 @@ const ChangePassword = () => {
   // const [verifyCode, setVerifyCode] = useState({
   // code: "",
   // });
-  // const [code, setCode] = useState({
-  //   custom_code: "",
-  //   });
-
+  //   const [error, setError] = useState("");
   // const handleVerify = (e) => {
   //   setVerifyCode({ code: e.target.value });
-  //   setCode({ custom_code: data.custom_code });
   // };
   // const handleSubmit = async () => {
-  //   if (verifyCode.code !== code.custom_code) {
-  //     setError("El código no coincide");
+  //   if (!verifyCode.code) {
+  //     setError("Por favor, introduce un código de verificación.");
   //     return;
   //   }
   //   try {
-  //     const { receiver_email } = recoverPassword;
-  //     await sendEmail(receiver_email);
+  //     const { code } = verifyCode;
+  //     await verifyPaasswordCode(code);
   //     console.log(
-  //       "Correo de recuperación enviado a:",
-  //       recoverPassword.receiver_email
-  //     );
-  //     navigate("/recover-password");
+  //       "Codigo de verificación enviado);
+  //     useNavegate("/change-password");
   //   } catch (err) {
   //     setError("correo no valido");
   //   }
