@@ -3,28 +3,6 @@ import logo from "../../assets/bucle-feliz.webp";
 import { Link } from "react-router-dom";
 
 const ChangePassword = () => {
-  // const [verifyCode, setVerifyCode] = useState({
-  // code: "",
-  // });
-  //   const [error, setError] = useState("");
-  // const handleVerify = (e) => {
-  //   setVerifyCode({ code: e.target.value });
-  // };
-  // const handleSubmit = async () => {
-  //   if (!verifyCode.code) {
-  //     setError("Por favor, introduce un código de verificación.");
-  //     return;
-  //   }
-  //   try {
-  //     const { code } = verifyCode;
-  //     await verifyPaasswordCode(code);
-  //     console.log(
-  //       "Codigo de verificación enviado);
-  //     useNavegate("/change-password");
-  //   } catch (err) {
-  //     setError("correo no valido");
-  //   }
-  // };
   return (
     <div className="password-container">
       <article className="container-logo">

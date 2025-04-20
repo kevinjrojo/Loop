@@ -102,6 +102,7 @@ export const sendEmail = async (receiver_email) => {
       }),
     });
     const data = await response.json();
+
     console.log(data);
 
     if (!response.ok) {
@@ -124,6 +125,7 @@ export const verifyPaasswordCode = async (code, user_email) => {
       }),
     });
     const data = await response.json();
+    console.log(data);
 
     if (!response.ok) {
       throw new Error(data.message || "Error en la verificación del código");

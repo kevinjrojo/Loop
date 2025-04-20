@@ -1,7 +1,7 @@
 import "../../styles/password.css";
 import logo from "../../assets/bucle-feliz.webp";
-import { Link } from "react-router-dom";
-import { sendEmail, verifyPaasswordCode } from "../../services/authService";
+import { Link, useNavigate } from "react-router-dom";
+import { verifyPaasswordCode } from "../../services/authService";
 import { useRef, useState } from "react";
 
 const RecoverPassword = () => {
@@ -11,6 +11,7 @@ const RecoverPassword = () => {
   });
   const inputs = useRef([]);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleInput = (e, index) => {
     if (e.key !== "Backspace" && index < 4)
@@ -25,10 +26,6 @@ const RecoverPassword = () => {
     }
   };
 
-  const { code } = verifyCode;
-  const { user_email } = sendEmail;
-  console.log("Codigo de verificacion enviado a:", user_email, code);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!verifyCode.code) {
@@ -36,28 +33,16 @@ const RecoverPassword = () => {
       return;
     }
     try {
+      const emailKey = sessionStorage.getItem("email");
       const { code } = verifyCode;
-      const { user_email } = sendEmail;
-      await verifyPaasswordCode(code, user_email);
-      console.log("Codigo de verificacion enviado a:", code, user_email);
+      await verifyPaasswordCode(code, emailKey);
+      console.log("Codigo de verificacion enviado a:", code, emailKey);
+      navigate("/change-password");
     } catch (err) {
       setError(err.message);
       console.log(err);
     }
   };
-
-  // const handleCodeReceived = async (emailKey, sendEmail) => {
-  //   setVerifyCode({ ...verifyCode, code: emailKey, user_email: sendEmail });
-  //   try {
-  //     const { code } = verifyCode;
-  //     const { user_email } = verifyCode;
-  //     await verifyPaasswordCode(code, user_email);
-  //     console.log("Codigo de verificacion enviado a:", emailKey, sendEmail);
-  //   } catch (err) {
-  //     setError(err.message);
-  //     console.log(err);
-  //   }
-  // };
 
   return (
     <div className="password-container">

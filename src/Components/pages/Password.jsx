@@ -26,6 +26,7 @@ const Password = () => {
         "Correo de recuperación enviado a:",
         recoverPassword.receiver_email
       );
+      sessionStorage.setItem("email", receiver_email);
       navigate("/recover-password");
     } catch (err) {
       setError("correo no valido");
