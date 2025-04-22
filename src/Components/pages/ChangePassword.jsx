@@ -28,6 +28,8 @@ const ChangePassword = () => {
       const emailKey = localStorage.getItem("email");
       const { new_password } = newPassword;
       await newUserPassword(new_password, emailKey);
+      alert("Contraseña cambiada con éxito.");
+      localStorage.removeItem("email");
       Navigate("/");
     } catch (err) {
       setError(err.message);
