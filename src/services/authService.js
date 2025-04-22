@@ -134,20 +134,18 @@ export const verifyPaasswordCode = async (code, user_email) => {
   }
 };
 
-// const token = localStorage.getItem("token");
-// console.log(token);
-export const newUserPassword = async (new_password, user_email) => {
+export const newUserPassword = async (new_password, email) => {
   const token = localStorage.getItem("token");
   console.log(token);
   try {
-    const response = await fetch(`${API_URL}/recovery-password/new-password`, {
+    const response = await fetch(`${API_URL}/recovery-password/reset`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        user_email: user_email,
+        email: email,
         new_password: new_password,
       }),
     });

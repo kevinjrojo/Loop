@@ -33,7 +33,7 @@ const RecoverPassword = () => {
       return;
     }
     try {
-      const emailKey = sessionStorage.getItem("email");
+      const emailKey = localStorage.getItem("email");
       const { code } = verifyCode;
       await verifyPaasswordCode(code, emailKey);
       console.log("Codigo de verificacion enviado a:", code, emailKey);

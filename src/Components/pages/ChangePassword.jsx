@@ -1,16 +1,16 @@
 import "../../styles/password.css";
 import logo from "../../assets/bucle-feliz.webp";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { newUserPassword } from "../../services/authService";
 
 const ChangePassword = () => {
   const [newPassword, setNewPassword] = useState({
+    email: "",
     new_password: "",
-    user_email: "",
   });
   const [error, setError] = useState("");
-
+  const Navigate = useNavigate();
   const handleChangePassword = (e) => {
     setNewPassword({ ...newPassword, [e.target.name]: e.target.value });
   };
@@ -25,10 +25,10 @@ const ChangePassword = () => {
       return;
     }
     try {
-      const emailKey = sessionStorage.getItem("email");
+      const emailKey = localStorage.getItem("email");
       const { new_password } = newPassword;
       await newUserPassword(new_password, emailKey);
-      console.log("contraseña cambiada a:", new_password, emailKey);
+      Navigate("/");
     } catch (err) {
       setError(err.message);
       console.log(err);

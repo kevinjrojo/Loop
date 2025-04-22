@@ -8,19 +8,16 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    setError(null);
-    setLoading(!loading);
-    if (!username || !password) return;
-    setError("Completa todos los campos.");
-    setLoading(!loading);
+    if (!username || !password) return setError("Completa todos los campos.");
 
     try {
       await loginUser(username, password);
+      setLoading(!loading);
       navigate("/home");
     } catch (err) {
       setError(err.message);
