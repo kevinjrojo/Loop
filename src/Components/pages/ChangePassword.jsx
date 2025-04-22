@@ -2,6 +2,7 @@ import "../../styles/password.css";
 import logo from "../../assets/bucle-feliz.webp";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { newUserPassword } from "../../services/authService";
 
 const ChangePassword = () => {
   const [newPassword, setNewPassword] = useState({
@@ -10,11 +11,11 @@ const ChangePassword = () => {
   });
   const [error, setError] = useState("");
 
-  const handleChange = (e) => {
+  const handleChangePassword = (e) => {
     setNewPassword({ ...newPassword, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmitPassword = async (e) => {
     e.preventDefault();
     setError("");
 
@@ -26,7 +27,7 @@ const ChangePassword = () => {
     try {
       const emailKey = sessionStorage.getItem("email");
       const { new_password } = newPassword;
-      await registerUser(new_password, emailKey);
+      await newUserPassword(new_password, emailKey);
       console.log("contraseña cambiada a:", new_password, emailKey);
     } catch (err) {
       setError(err.message);
@@ -48,7 +49,7 @@ const ChangePassword = () => {
               name="new_password"
               type="password"
               className="input"
-              onChange={handleChange}
+              onChange={handleChangePassword}
               placeholder="Nueva contraseña"
             />
             <input
@@ -58,7 +59,11 @@ const ChangePassword = () => {
               placeholder="Corfirmar contraseña"
             />
             {error && <p style={{ color: "red" }}>{error}</p>}
-            <button type="button" className="btn" onClick={handleSubmit}>
+            <button
+              type="button"
+              className="btn"
+              onClick={handleSubmitPassword}
+            >
               Cambiar contraseña
             </button>
             <Link htmlFor="signup_toggle" to="/" className="password">

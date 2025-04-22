@@ -136,7 +136,7 @@ export const verifyPaasswordCode = async (code, user_email) => {
 
 // const token = localStorage.getItem("token");
 // console.log(token);
-export const newPassword = async (new_password, user_email) => {
+export const newUserPassword = async (new_password, user_email) => {
   const token = localStorage.getItem("token");
   console.log(token);
   try {
