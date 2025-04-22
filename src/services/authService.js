@@ -7,45 +7,6 @@ const VITE_PASSWORD_EMAIL = import.meta.env.VITE_PASSWORD_EMAIL;
 //const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 //const apiKey = import.meta.env.VITE_CLOUDINARY_API_KEY;
 //const apiSecret = import.meta.env.VITE_CLOUDINARY_API_SECRET;
-
-export const loginUser = async (username, password) => {
-  const formData = new URLSearchParams();
-  formData.append("username", username);
-  formData.append("password", password);
-
-  const response = await fetch(`${API_URL}/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: formData.toString(),
-  });
-
-  if (!response.ok) throw new Error("Usuario o contraseña incorrectos");
-
-  const data = await response.json();
-
-  localStorage.setItem("token", data.access_token);
-
-  return data.access_token;
-};
-export const getUserData = async () => {
-  const token = localStorage.getItem("token");
-  if (!token) throw new Error("No hay sesión activa");
-
-  const response = await fetch(`${API_URL}/user/me`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  });
-
-  if (!response.ok) throw new Error("Error al obtener datos del usuario");
-
-  return response.json();
-};
-export const logoutUser = () => {
-  localStorage.removeItem("token");
-};
 export const registerUser = async (
   full_name,
   username,
@@ -85,6 +46,44 @@ export const registerUser = async (
     throw err;
   }
 };
+export const loginUser = async (username, password) => {
+  const formData = new URLSearchParams();
+  formData.append("username", username);
+  formData.append("password", password);
+
+  const response = await fetch(`${API_URL}/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: formData.toString(),
+  });
+
+  if (!response.ok) throw new Error("Usuario o contraseña incorrectos");
+
+  const data = await response.json();
+
+  localStorage.setItem("token", data.access_token);
+
+  return data.access_token;
+};
+export const getUserData = async () => {
+  const token = localStorage.getItem("token");
+  if (!token) throw new Error("No hay sesión activa");
+
+  const response = await fetch(`${API_URL}/user/me`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) throw new Error("Error al obtener datos del usuario");
+  return response.json();
+};
+export const logoutUser = () => {
+  localStorage.removeItem("token");
+};
+
 export const sendEmail = async (receiver_email) => {
   const formData = new URLSearchParams();
   formData.append("receiver_email", receiver_email);
@@ -102,8 +101,6 @@ export const sendEmail = async (receiver_email) => {
       }),
     });
     const data = await response.json();
-
-    console.log(data);
 
     if (!response.ok) {
       throw new Error(data.message || "Error en envio de correo");
@@ -125,10 +122,40 @@ export const verifyPaasswordCode = async (code, user_email) => {
       }),
     });
     const data = await response.json();
+    localStorage.setItem("token", data.token);
     console.log(data);
 
     if (!response.ok) {
       throw new Error(data.message || "Error en la verificación del código");
+    }
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};
+
+// const token = localStorage.getItem("token");
+// console.log(token);
+export const newPassword = async (new_password, user_email) => {
+  const token = localStorage.getItem("token");
+  console.log(token);
+  try {
+    const response = await fetch(`${API_URL}/recovery-password/new-password`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        user_email: user_email,
+        new_password: new_password,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+
+    if (!response.ok) {
+      throw new Error(data.message || "Error al cambiar la contraseña");
     }
   } catch (err) {
     console.log(err);
