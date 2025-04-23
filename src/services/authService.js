@@ -7,19 +7,12 @@ const VITE_PASSWORD_EMAIL = import.meta.env.VITE_PASSWORD_EMAIL;
 //const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 //const apiKey = import.meta.env.VITE_CLOUDINARY_API_KEY;
 //const apiSecret = import.meta.env.VITE_CLOUDINARY_API_SECRET;
-export const registerUser = async (
-  full_name,
-  username,
-  email,
-  password,
-  confirmPassword
-) => {
+export const registerUser = async (full_name, username, email, password) => {
   const formData = new URLSearchParams();
   formData.append("full_name", full_name);
   formData.append("username", username);
   formData.append("email", email);
   formData.append("password", password);
-  formData.append("confirmPassword", confirmPassword);
 
   try {
     const response = await fetch(`${API_URL}/user/register`, {

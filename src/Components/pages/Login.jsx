@@ -4,12 +4,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../services/authService";
 import { Link } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -22,6 +24,9 @@ const Login = () => {
     } catch (err) {
       setError(err.message);
     }
+  };
+  const togglePassword = () => {
+    setShowPassword((prev) => !prev);
   };
 
   return (
@@ -53,14 +58,24 @@ const Login = () => {
                 required
                 className="input"
               />
-              <input
-                type="password"
-                placeholder="Contraseña"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="input"
-              />
+              <div className="input-password-container">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Contraseña"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="input"
+                />
+                <button
+                  type="button"
+                  onClick={togglePassword}
+                  className="btn-eye"
+                >
+                  {showPassword ? <FaEye /> : <FaEyeSlash />}
+                </button>
+              </div>
+
               <button type="button" className="btn" onClick={handleLogin}>
                 Login
               </button>

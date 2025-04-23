@@ -8,6 +8,7 @@ const ChangePassword = () => {
   const [newPassword, setNewPassword] = useState({
     email: "",
     new_password: "",
+    new_password_confirm: "",
   });
   const [error, setError] = useState("");
   const Navigate = useNavigate();
@@ -21,7 +22,9 @@ const ChangePassword = () => {
 
     if (!newPassword.new_password) {
       setError("Ingresa su nueva contraseña por favor.");
-      console.log("error en el campo de contraseña");
+      if (newPassword.new_password !== newPassword.new_password_confirm) {
+        setError("Las contraseñas no coinciden.");
+      }
       return;
     }
     try {
