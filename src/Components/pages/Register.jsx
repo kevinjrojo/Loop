@@ -3,6 +3,7 @@ import "../../styles/register.css";
 import { useState } from "react";
 import logo from "../../assets/bucle-feliz.webp";
 import { registerUser } from "../../services/authService";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   const [userData, setUserData] = useState({
@@ -12,7 +13,7 @@ const Register = () => {
     password: "",
     confirmPassword: "",
   });
-
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -39,7 +40,9 @@ const Register = () => {
       console.log(err);
     }
   };
-
+  const togglePassword = () => {
+    setShowPassword((prev) => !prev);
+  };
   return (
     <div className="register-container">
       <article className="container-logo">
@@ -84,24 +87,52 @@ const Register = () => {
               required
               className="input"
             />
-            <input
-              className="input"
-              type="password"
-              name="password"
-              placeholder="Contraseña"
-              value={userData.password}
-              onChange={handleChange}
-              required
-            />
-            <input
-              className="input"
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirmar contraseña"
-              value={userData.confirmPassword}
-              onChange={handleChange}
-              required
-            />
+
+            <div className="input-password-container">
+              <input
+                type={showPassword ? "text" : "password"}
+                onChange={handleChange}
+                value={userData.password}
+                name="password"
+                placeholder="Contraseña"
+                required
+                className="input"
+              />
+              <button
+                type="button"
+                onClick={togglePassword}
+                className="btn-eye"
+              >
+                {showPassword ? (
+                  <FaEye color="white" />
+                ) : (
+                  <FaEyeSlash color="white" />
+                )}
+              </button>
+            </div>
+            <div className="input-password-container">
+              <input
+                type={showPassword ? "text" : "password"}
+                onChange={handleChange}
+                value={userData.confirmPassword}
+                name="confirmPassword"
+                placeholder="Confirmar contraseña"
+                required
+                className="input"
+              />
+              <button
+                type="button"
+                onClick={togglePassword}
+                className="btn-eye"
+              >
+                {showPassword ? (
+                  <FaEye color="white" />
+                ) : (
+                  <FaEyeSlash color="white" />
+                )}
+              </button>
+            </div>
+
             <button type="submit" onClick={handleSubmit} className="btn">
               Registrarte
             </button>
