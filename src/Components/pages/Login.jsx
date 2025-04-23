@@ -72,7 +72,11 @@ const Login = () => {
                   onClick={togglePassword}
                   className="btn-eye"
                 >
-                  {showPassword ? <FaEye /> : <FaEyeSlash />}
+                  {showPassword ? (
+                    <FaEye color="white" />
+                  ) : (
+                    <FaEyeSlash color="white" />
+                  )}
                 </button>
               </div>
 
