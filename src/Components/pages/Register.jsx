@@ -14,6 +14,7 @@ const Register = () => {
     confirmPassword: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfim, setShowPasswordConfirm] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -42,6 +43,9 @@ const Register = () => {
   };
   const togglePassword = () => {
     setShowPassword((prev) => !prev);
+  };
+  const togglePasswordConfirm = () => {
+    setShowPasswordConfirm((prev) => !prev);
   };
   return (
     <div className="register-container">
@@ -112,7 +116,7 @@ const Register = () => {
             </div>
             <div className="input-password-container">
               <input
-                type={showPassword ? "text" : "password"}
+                type={showPasswordConfim ? "text" : "password"}
                 onChange={handleChange}
                 value={userData.confirmPassword}
                 name="confirmPassword"
@@ -122,10 +126,10 @@ const Register = () => {
               />
               <button
                 type="button"
-                onClick={togglePassword}
+                onClick={togglePasswordConfirm}
                 className="btn-eye"
               >
-                {showPassword ? (
+                {showPasswordConfim ? (
                   <FaEye color="white" />
                 ) : (
                   <FaEyeSlash color="white" />

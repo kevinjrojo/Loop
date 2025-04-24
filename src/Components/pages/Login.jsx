@@ -16,13 +16,16 @@ const Login = () => {
 
   const handleLogin = async () => {
     if (!username || !password) return setError("Completa todos los campos.");
-
-    try {
-      await loginUser(username, password);
+    if (username && password) {
       setLoading(!loading);
-      navigate("/home");
-    } catch (err) {
-      setError(err.message);
+      try {
+        await loginUser(username, password);
+        setLoading(!loading);
+        navigate("/home");
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
     }
   };
   const togglePassword = () => {
@@ -31,23 +34,23 @@ const Login = () => {
 
   return (
     <div>
-      <nav className={loading ? "login-container" : "loading"}>
-        <svg
-          viewBox="0 0 16 16"
-          height={48}
-          width={48}
-          className="windows-loading-spinner"
-        >
-          <circle r="7px" cy="8px" cx="8px" />
-        </svg>
-      </nav>
-      <main className={loading ? " loading" : "login-container"}>
+      <main className="login-container">
         <article className="container-logo">
           <img src={logo} alt="Logo Loop" className="logo-loop" />
         </article>
         <div className="container">
           <form className="form">
-            <div className="form_front">
+            <nav className={loading ? "loading-container" : "loading"}>
+              <svg
+                viewBox="0 0 16 16"
+                height={48}
+                width={48}
+                className="windows-loading-spinner"
+              >
+                <circle r="7px" cy="8px" cx="8px" />
+              </svg>
+            </nav>
+            <div className={loading ? "loading" : "form_front"}>
               <h1 className="form_details">Loop</h1>
               {error && <p style={{ color: "red" }}>{error}</p>}
               <input

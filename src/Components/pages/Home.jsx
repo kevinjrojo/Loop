@@ -57,7 +57,7 @@ const Home = () => {
     setCancelHistory(false);
   };
 
-  if (!user) return <p style={{ color: "white" }}>Cargando...</p>;
+  if (!user) return <p style={{ color: "white" }}></p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (

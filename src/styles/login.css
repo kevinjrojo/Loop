@@ -5,7 +5,9 @@
   height: 100vh;
   background-color: #212121;
 }
-
+.loading {
+  display: none;
+}
 .container-logo {
   text-align: center;
   margin: auto;
@@ -162,9 +164,7 @@
   color: white;
   text-align: center;
 }
-.loading {
-  display: none;
-}
+
 .windows-loading-spinner {
   box-sizing: border-box;
   width: 3rem;

@@ -3,6 +3,7 @@ import logo from "../../assets/bucle-feliz.webp";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { newUserPassword } from "../../services/authService";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const ChangePassword = () => {
   const [newPassword, setNewPassword] = useState({
@@ -12,6 +13,8 @@ const ChangePassword = () => {
   });
   const [error, setError] = useState("");
   const Navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfim, setShowPasswordConfirm] = useState(false);
   const handleChangePassword = (e) => {
     setNewPassword({ ...newPassword, [e.target.name]: e.target.value });
   };
@@ -40,6 +43,12 @@ const ChangePassword = () => {
     }
   };
 
+  const togglePassword = () => {
+    setShowPassword((prev) => !prev);
+  };
+  const togglePasswordConfirm = () => {
+    setShowPasswordConfirm((prev) => !prev);
+  };
   return (
     <div className="password-container">
       <article className="container-logo">
@@ -50,19 +59,47 @@ const ChangePassword = () => {
           <div className="form_front">
             <h1 className="form_details">Loop</h1>
             <label className="password">escribe tu nueva contraseña</label>
-            <input
-              name="new_password"
-              type="password"
-              className="input"
-              onChange={handleChangePassword}
-              placeholder="Nueva contraseña"
-            />
-            <input
-              name="new_password"
-              type="password"
-              className="input"
-              placeholder="Corfirmar contraseña"
-            />
+            <div className="input-password-container">
+              <input
+                name="new_password"
+                type={showPassword ? "text" : "password"}
+                className="input"
+                onChange={handleChangePassword}
+                placeholder="Nueva contraseña"
+              />
+              <button
+                type="button"
+                onClick={togglePassword}
+                className="btn-eye"
+              >
+                {showPassword ? (
+                  <FaEye color="white" />
+                ) : (
+                  <FaEyeSlash color="white" />
+                )}
+              </button>
+            </div>
+
+            <div className="input-password-container">
+              <input
+                name="new_password"
+                type={showPasswordConfim ? "text" : "password"}
+                className="input"
+                onChange={handleChangePassword}
+                placeholder="Confimar contraseña"
+              />
+              <button
+                type="button"
+                onClick={togglePasswordConfirm}
+                className="btn-eye"
+              >
+                {showPasswordConfim ? (
+                  <FaEye color="white" />
+                ) : (
+                  <FaEyeSlash color="white" />
+                )}
+              </button>
+            </div>
             {error && <p style={{ color: "red" }}>{error}</p>}
             <button
               type="button"
