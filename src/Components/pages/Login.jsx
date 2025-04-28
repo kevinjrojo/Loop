@@ -15,6 +15,8 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+    console.log(username, password);
+
     if (!username || !password) return setError("Completa todos los campos.");
     if (username && password) {
       setLoading(!loading);
@@ -40,7 +42,7 @@ const Login = () => {
         </article>
         <div className="container">
           <form className="form">
-            <nav className={loading ? "loading-container" : "loading"}>
+            <div className={loading ? "loading-container" : "loading"}>
               <svg
                 viewBox="0 0 16 16"
                 height={48}
@@ -49,10 +51,9 @@ const Login = () => {
               >
                 <circle r="7px" cy="8px" cx="8px" />
               </svg>
-            </nav>
+            </div>
             <div className={loading ? "loading" : "form_front"}>
               <h1 className="form_details">Loop</h1>
-              {error && <p style={{ color: "red" }}>{error}</p>}
               <input
                 type="text"
                 placeholder="Usuario"
@@ -82,7 +83,7 @@ const Login = () => {
                   )}
                 </button>
               </div>
-
+              {error && <p style={{ color: "red" }}>{error}</p>}
               <button type="button" className="btn" onClick={handleLogin}>
                 Login
               </button>

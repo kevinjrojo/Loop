@@ -20,12 +20,11 @@
   justify-content: center;
   align-items: center;
 }
-
 .form {
+  background-color: #999;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 1s ease;
 }
 
 .form .form_front {
@@ -33,35 +32,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
   position: absolute;
-  padding: 65px 45px;
+  padding: 30px 40px;
   border-radius: 15px;
   box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 1),
     inset -1px -1px 5px rgba(255, 255, 255, 0.6);
 }
-
-.form .form_back {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  position: absolute;
-
-  padding: 65px 45px;
-  border-radius: 15px;
-  box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 1),
-    inset -1px -1px 5px rgba(255, 255, 255, 0.6);
-}
-
 .form_details {
   font-size: 25px;
-  font-weight: 600;
+
   padding-bottom: 10px;
   color: white;
 }
-
 .input {
   width: 245px;
   min-height: 45px;
@@ -75,16 +58,13 @@
   box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
     1px 1px 10px rgba(255, 255, 255, 0.6);
 }
-
 .input::placeholder {
   color: #999;
 }
-
 .input:focus.input::placeholder {
   transition: 0.3s;
   opacity: 0;
 }
-
 .input:focus {
   transform: scale(1.05);
   box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
@@ -95,11 +75,9 @@
   position: relative;
   width: 100%;
 }
-
 .input-password-container .input {
   width: 245px;
 }
-
 .input-password-container .btn-eye {
   position: absolute;
   top: 53%;
@@ -110,7 +88,6 @@
   cursor: pointer;
   font-size: 1.2rem;
 }
-
 .btn {
   padding: 10px 35px;
   cursor: pointer;
@@ -125,21 +102,18 @@
   transition: 0.35s;
   text-decoration: none;
 }
-
 .btn:hover {
   transform: scale(1.05);
   box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
     1px 1px 10px rgba(255, 255, 255, 0.6), inset 2px 2px 10px rgba(0, 0, 0, 1),
     inset -1px -1px 5px rgba(255, 255, 255, 0.6);
 }
-
 .btn:focus {
   transform: scale(1.05);
   box-shadow: 6px 6px 10px rgba(0, 0, 0, 1),
     1px 1px 10px rgba(255, 255, 255, 0.6), inset 2px 2px 10px rgba(0, 0, 0, 1),
     inset -1px -1px 5px rgba(255, 255, 255, 0.6);
 }
-
 .form .switch {
   font-size: 13px;
   color: white;
@@ -153,10 +127,6 @@
   color: aqua;
   margin-left: 5px;
 }
-
-.container #signup_toggle {
-  display: none;
-}
 .password {
   font-size: 15px;
   cursor: pointer;
@@ -164,7 +134,6 @@
   color: white;
   text-align: center;
 }
-
 .windows-loading-spinner {
   box-sizing: border-box;
   width: 3rem;
@@ -208,18 +177,16 @@
     height: 70vh;
   }
   .container-logo {
-    text-align: center;
     margin-top: 5%;
   }
   .logo-loop {
-    max-width: 20%;
+    max-width: 30%;
   }
   .form-login-container {
     display: flex;
     justify-content: start;
     margin: auto;
     align-items: center;
-    margin-top: 5%;
   }
   .form-login {
     display: flex;

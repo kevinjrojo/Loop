@@ -10,26 +10,31 @@ const Password = () => {
   });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
   const handleChange = (e) => {
     setRecoverPassword({ receiver_email: e.target.value });
   };
   const handleSubmit = async () => {
     if (!recoverPassword.receiver_email) {
-      setError("Por favor, introduce un correo electrónico.");
+      setError("Introduce un correo electrónico.");
       return;
     }
-    try {
-      const { receiver_email } = recoverPassword;
-      await sendEmail(receiver_email);
-      console.log(
-        "Correo de recuperación enviado a:",
-        recoverPassword.receiver_email
-      );
-      localStorage.setItem("email", recoverPassword.receiver_email);
-      navigate("/recover-password");
-    } catch (err) {
-      setError("correo no valido");
+    if (recoverPassword.receiver_email) {
+      setLoading(!loading);
+
+      try {
+        const { receiver_email } = recoverPassword;
+        await sendEmail(receiver_email);
+        console.log(
+          "Correo de recuperación enviado a:",
+          recoverPassword.receiver_email
+        );
+        localStorage.setItem("email", recoverPassword.receiver_email);
+        navigate("/recover-password");
+      } catch (err) {
+        setError("correo no valido");
+        setLoading(false);
+      }
     }
   };
 
@@ -40,14 +45,24 @@ const Password = () => {
       </article>
       <div className="container">
         <form className="form">
-          <div className="form_front">
+          <div className={loading ? "loading-container" : "loading"}>
+            <svg
+              viewBox="0 0 16 16"
+              height={48}
+              width={48}
+              className="windows-loading-spinner"
+            >
+              <circle r="7px" cy="8px" cx="8px" />
+            </svg>
+          </div>
+          <div className={loading ? "loading" : "form_front"}>
             <h1 className="form_details">Loop</h1>
 
             <p className="password">
               Introduce el correo electrónico asociados <br /> a tu cuenta para
               cambiar tu contraseña.
             </p>
-            {error && <p style={{ color: "red" }}>{error}</p>}
+
             <input
               onChange={handleChange}
               type="email"
@@ -55,6 +70,7 @@ const Password = () => {
               className="input"
               placeholder="Correo electrónico"
             />
+            {error && <p style={{ color: "red" }}>{error}</p>}
             <Link className="btn" onClick={handleSubmit}>
               Enviar
             </Link>

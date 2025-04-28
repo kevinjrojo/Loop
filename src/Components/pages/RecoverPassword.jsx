@@ -11,6 +11,7 @@ const RecoverPassword = () => {
   });
   const inputs = useRef([]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleInput = (e, index) => {
@@ -29,18 +30,22 @@ const RecoverPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!verifyCode.code) {
-      setError("Por favor, introduce un código de verificación.");
+      setError("completa todos los campos.");
       return;
     }
-    try {
-      const emailKey = localStorage.getItem("email");
-      const { code } = verifyCode;
-      await verifyPaasswordCode(code, emailKey);
-      console.log("Codigo de verificacion enviado a:", code, emailKey);
-      navigate("/change-password");
-    } catch (err) {
-      setError(err.message);
-      console.log(err);
+    if (verifyCode.code) {
+      setLoading(!loading);
+      try {
+        const emailKey = localStorage.getItem("email");
+        const { code } = verifyCode;
+        await verifyPaasswordCode(code, emailKey);
+        console.log("Codigo de verificacion enviado a:", code, emailKey);
+        navigate("/change-password");
+      } catch (err) {
+        setError(err.message);
+        console.log(err);
+        setLoading(false);
+      }
     }
   };
 
@@ -51,7 +56,17 @@ const RecoverPassword = () => {
       </article>
       <div className="container">
         <form className="form">
-          <div className="form_front">
+          <div className={loading ? "loading-container" : "loading"}>
+            <svg
+              viewBox="0 0 16 16"
+              height={48}
+              width={48}
+              className="windows-loading-spinner"
+            >
+              <circle r="7px" cy="8px" cx="8px" />
+            </svg>
+          </div>
+          <div className={loading ? "loading" : "form_front"}>
             <h1 className="form_details">Loop</h1>
             <p className="password">
               Te enviamos un codigo de verificacion a <br /> tu correo,copia y

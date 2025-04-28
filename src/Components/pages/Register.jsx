@@ -16,6 +16,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfim, setShowPasswordConfirm] = useState(false);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -26,19 +27,32 @@ const Register = () => {
     e.preventDefault();
     setError("");
 
-    if (userData.password !== userData.confirmPassword) {
-      setError("Las contraseñas no coinciden");
-      return;
-    }
-    try {
-      const { full_name, username, email, password, confirmPassword } =
-        userData;
+    if (!userData.password || !userData.confirmPassword)
+      return setError("Completa todos los campos.");
+    if (userData.password !== userData.confirmPassword)
+      return setError("Las contraseñas no coinciden");
 
-      await registerUser(full_name, username, email, password, confirmPassword);
-      navigate("/");
-    } catch (err) {
-      setError(err.message);
-      console.log(err);
+    if (Object.values(userData).some((value) => !value))
+      return setError("Completa todos los campos.");
+    if (Object.values(userData).some((value) => value)) {
+      setLoading(!loading);
+      try {
+        const { full_name, username, email, password, confirmPassword } =
+          userData;
+
+        await registerUser(
+          full_name,
+          username,
+          email,
+          password,
+          confirmPassword
+        );
+        setLoading(!loading);
+        navigate("/");
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
     }
   };
   const togglePassword = () => {
@@ -54,19 +68,27 @@ const Register = () => {
       </article>
       <div className="container">
         <form className="form">
-          <div className="form_front">
+          <div className={loading ? "loading-container" : "loading"}>
+            <svg
+              viewBox="0 0 16 16"
+              height={48}
+              width={48}
+              className="windows-loading-spinner"
+            >
+              <circle r="7px" cy="8px" cx="8px" />
+            </svg>
+          </div>
+          <div className={loading ? "loading" : "form_front"}>
             <h1 className="form_details">Loop</h1>
-            {error && (
-              <p className="error" style={{ color: "red" }}>
-                {error}
-              </p>
-            )}
+
             <p className="password">
               Completa el con tus datos <br /> para poder registrarte.
             </p>
             <input
               type="text"
               name="full_name"
+              minLength={3}
+              maxLength={10}
               placeholder="Nombre completo"
               value={userData.full_name}
               onChange={handleChange}
@@ -76,6 +98,8 @@ const Register = () => {
             <input
               type="text"
               name="username"
+              minLength={3}
+              maxLength={10}
               placeholder="Nombre de usuario"
               value={userData.username}
               onChange={handleChange}
@@ -98,6 +122,8 @@ const Register = () => {
                 onChange={handleChange}
                 value={userData.password}
                 name="password"
+                minLength={3}
+                maxLength={10}
                 placeholder="Contraseña"
                 required
                 className="input"
@@ -120,6 +146,8 @@ const Register = () => {
                 onChange={handleChange}
                 value={userData.confirmPassword}
                 name="confirmPassword"
+                minLength={3}
+                maxLength={10}
                 placeholder="Confirmar contraseña"
                 required
                 className="input"
@@ -136,7 +164,7 @@ const Register = () => {
                 )}
               </button>
             </div>
-
+            {error && <p style={{ color: "red" }}>{error}</p>}
             <button type="submit" onClick={handleSubmit} className="btn">
               Registrarte
             </button>

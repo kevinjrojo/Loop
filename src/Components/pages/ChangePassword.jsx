@@ -15,31 +15,34 @@ const ChangePassword = () => {
   const Navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfim, setShowPasswordConfirm] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const handleChangePassword = (e) => {
     setNewPassword({ ...newPassword, [e.target.name]: e.target.value });
   };
 
   const handleSubmitPassword = async (e) => {
     e.preventDefault();
-    setError("");
 
-    if (!newPassword.new_password) {
-      setError("Ingresa su nueva contraseña por favor.");
-      if (newPassword.new_password !== newPassword.new_password_confirm) {
-        setError("Las contraseñas no coinciden.");
+    if (!newPassword.new_password || !newPassword.new_password_confirm)
+      return setError("completa todos los campos.");
+    if (newPassword.new_password !== newPassword.new_password_confirm)
+      return setError("Las contraseñas no coinciden.");
+
+    if (newPassword.new_password && newPassword.new_password_confirm) {
+      setLoading(!loading);
+      try {
+        const emailKey = localStorage.getItem("email");
+        const { new_password } = newPassword;
+        await newUserPassword(new_password, emailKey);
+        alert("Contraseña cambiada con éxito.");
+        localStorage.removeItem("email");
+        Navigate("/");
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+        console.log(err);
       }
-      return;
-    }
-    try {
-      const emailKey = localStorage.getItem("email");
-      const { new_password } = newPassword;
-      await newUserPassword(new_password, emailKey);
-      alert("Contraseña cambiada con éxito.");
-      localStorage.removeItem("email");
-      Navigate("/");
-    } catch (err) {
-      setError(err.message);
-      console.log(err);
     }
   };
 
@@ -56,7 +59,17 @@ const ChangePassword = () => {
       </article>
       <div className="container">
         <form className="form">
-          <div className="form_front">
+          <div className={loading ? "loading-container" : "loading"}>
+            <svg
+              viewBox="0 0 16 16"
+              height={48}
+              width={48}
+              className="windows-loading-spinner"
+            >
+              <circle r="7px" cy="8px" cx="8px" />
+            </svg>
+          </div>
+          <div className={loading ? "loading" : "form_front"}>
             <h1 className="form_details">Loop</h1>
             <label className="password">escribe tu nueva contraseña</label>
             <div className="input-password-container">
@@ -82,7 +95,7 @@ const ChangePassword = () => {
 
             <div className="input-password-container">
               <input
-                name="new_password"
+                name="new_password_confirm"
                 type={showPasswordConfim ? "text" : "password"}
                 className="input"
                 onChange={handleChangePassword}

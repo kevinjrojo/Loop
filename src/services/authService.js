@@ -29,8 +29,10 @@ export const registerUser = async (full_name, username, email, password) => {
     });
 
     const data = await response.json();
-
     if (!response.ok) {
+      if (response.status === 422) {
+        throw new Error("Email invalido");
+      }
       throw new Error(data.message || "Error en el registro");
     }
   } catch (err) {
