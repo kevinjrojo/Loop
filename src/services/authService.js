@@ -31,12 +31,14 @@ export const registerUser = async (full_name, username, email, password) => {
     const data = await response.json();
     if (!response.ok) {
       if (response.status === 422) {
-        throw new Error("Email invalido");
+        throw new Error(data.message || "Email invalido");
       }
-      throw new Error(data.message || "Error en el registro");
+      if (response.status === 409) {
+        throw new Error(data.message || "El usuario o email ya existe");
+      }
+      throw new Error("Error en el registro");
     }
   } catch (err) {
-    setError(err.message);
     console.log(err);
     throw err;
   }
@@ -74,9 +76,6 @@ export const getUserData = async () => {
 
   if (!response.ok) throw new Error("Error al obtener datos del usuario");
   return response.json();
-};
-export const logoutUser = () => {
-  localStorage.removeItem("token");
 };
 
 export const sendEmail = async (receiver_email) => {

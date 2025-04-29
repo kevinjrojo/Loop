@@ -15,10 +15,9 @@ const Password = () => {
     setRecoverPassword({ receiver_email: e.target.value });
   };
   const handleSubmit = async () => {
-    if (!recoverPassword.receiver_email) {
-      setError("Introduce un correo electrónico.");
-      return;
-    }
+    if (!recoverPassword.receiver_email)
+      return setError("Introduce un correo electrónico.");
+
     if (recoverPassword.receiver_email) {
       setLoading(!loading);
 

@@ -14,6 +14,7 @@ import Notifications from "./Components/pages/Notifications.jsx";
 import Friends from "./Components/pages/Friends.jsx";
 import RecoverPassword from "./Components/pages/RecoverPassword.jsx";
 import ChangePassword from "./Components/pages/ChangePassword.jsx";
+import ConfirmPassword from "./Components/pages/ConfirmPassword.jsx";
 
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/friends" element={<Friends />} />
         <Route path="/recover-password" element={<RecoverPassword />} />
         <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/confirm-password" element={<ConfirmPassword />} />
         <Route
           path="/home"
           element={

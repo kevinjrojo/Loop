@@ -34,6 +34,7 @@ const Register = () => {
 
     if (Object.values(userData).some((value) => !value))
       return setError("Completa todos los campos.");
+
     if (Object.values(userData).some((value) => value)) {
       setLoading(!loading);
       try {

@@ -35,9 +35,7 @@ const ChangePassword = () => {
         const emailKey = localStorage.getItem("email");
         const { new_password } = newPassword;
         await newUserPassword(new_password, emailKey);
-        alert("Contraseña cambiada con éxito.");
-        localStorage.removeItem("email");
-        Navigate("/");
+        Navigate("/confirm-password");
       } catch (err) {
         setError(err.message);
         setLoading(false);
@@ -114,13 +112,9 @@ const ChangePassword = () => {
               </button>
             </div>
             {error && <p style={{ color: "red" }}>{error}</p>}
-            <button
-              type="button"
-              className="btn"
-              onClick={handleSubmitPassword}
-            >
+            <Link className="btn" onClick={handleSubmitPassword}>
               Cambiar contraseña
-            </button>
+            </Link>
             <Link htmlFor="signup_toggle" to="/" className="password">
               Volver al inicio de sesión
             </Link>
