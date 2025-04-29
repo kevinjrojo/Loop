@@ -8,7 +8,7 @@
 - Optimizar codigo de inputsPassword con .map . ✅
 - Madar con fech al back-end el condigo verificado para renovar password. ✅
 - Hacer vistas para actualizar contraseña de usuario. ✅
-- Vista para confirmar actualizacion de contraseña.
+- Vista para confirmar actualizacion de contraseña. ✅
 - optimizar codigo en general.
 - hacer un loading para cada peticion al back-end. ✅
 - funcion para cerrar sesion.
