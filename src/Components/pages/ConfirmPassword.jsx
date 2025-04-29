@@ -1,12 +1,10 @@
 import logo from "../../assets/bucle-feliz.webp";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const ConfirmPassword = () => {
-  const navigate = useNavigate();
-
   const handleSubmit = async () => {
     localStorage.removeItem("token");
-    navigate("/");
+    localStorage.removeItem("email");
   };
 
   return (
@@ -34,7 +32,7 @@ const ConfirmPassword = () => {
                 Tu contraseña ha sido restablecida con éxito. Por favor, inicia
                 sesión para continuar.
               </p>
-              <Link className="btn" onClick={handleSubmit}>
+              <Link className="btn" to={"/"} onClick={handleSubmit}>
                 Iniciar sesión
               </Link>
             </div>

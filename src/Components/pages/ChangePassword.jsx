@@ -12,7 +12,7 @@ const ChangePassword = () => {
     new_password_confirm: "",
   });
   const [error, setError] = useState("");
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfim, setShowPasswordConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -35,7 +35,7 @@ const ChangePassword = () => {
         const emailKey = localStorage.getItem("email");
         const { new_password } = newPassword;
         await newUserPassword(new_password, emailKey);
-        Navigate("/confirm-password");
+        navigate("/confirm-password");
       } catch (err) {
         setError(err.message);
         setLoading(false);

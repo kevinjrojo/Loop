@@ -77,6 +77,9 @@ export const getUserData = async () => {
   if (!response.ok) throw new Error("Error al obtener datos del usuario");
   return response.json();
 };
+export const logoutUser = () => {
+  localStorage.removeItem("token");
+};
 
 export const sendEmail = async (receiver_email) => {
   const formData = new URLSearchParams();
