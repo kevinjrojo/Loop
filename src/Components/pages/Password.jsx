@@ -57,11 +57,10 @@ const Password = () => {
           <div className={loading ? "loading" : "form_front"}>
             <h1 className="form_details">Loop</h1>
 
-            <p className="password">
-              Introduce el correo electrónico asociados <br /> a tu cuenta para
-              cambiar tu contraseña.
+            <p className="text-recover-password">
+              {" "}
+              Introduce el correo electrónico
             </p>
-
             <input
               onChange={handleChange}
               type="email"

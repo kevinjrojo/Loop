@@ -1,11 +1,6 @@
 import { Link } from "react-router-dom";
 
-const ConfirmPassword = () => {
-  const handleSubmit = async () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("email");
-  };
-
+const ConfirmRegister = () => {
   return (
     <div className="password-container">
       <div className="container">
@@ -24,10 +19,10 @@ const ConfirmPassword = () => {
             <h1 className="form_details">Loop</h1>
 
             <p className="password">
-              Tu contraseña ha sido restablecida con éxito. <br /> Por favor,
-              inicia sesión para continuar.
+              Te damos la bienvenida a Loop. <br /> Tu cuenta ha sido creada con
+              éxito. <br /> Por favor, inicia sesión para continuar.
             </p>
-            <Link className="btn" to={"/"} onClick={handleSubmit}>
+            <Link className="btn" to={"/"}>
               Iniciar sesión
             </Link>
           </div>
@@ -37,4 +32,4 @@ const ConfirmPassword = () => {
   );
 };
 
-export default ConfirmPassword;
+export default ConfirmRegister;

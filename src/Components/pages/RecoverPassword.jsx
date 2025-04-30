@@ -69,8 +69,8 @@ const RecoverPassword = () => {
           <div className={loading ? "loading" : "form_front"}>
             <h1 className="form_details">Loop</h1>
             <p className="password">
-              Te enviamos un codigo de verificacion a <br /> tu correo,copia y
-              pega el codigo debajo.
+              Te enviamos un codigo de <br />
+              verificacion a tu correo,copia y pega el codigo debajo.
             </p>
             <nav className="container-input-recover-password">
               {[...Array(5)].map((_, index) => (

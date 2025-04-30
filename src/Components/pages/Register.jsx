@@ -49,7 +49,7 @@ const Register = () => {
           confirmPassword
         );
         setLoading(!loading);
-        navigate("/");
+        navigate("/confirm-register");
       } catch (err) {
         setError(err.message);
         setLoading(false);
