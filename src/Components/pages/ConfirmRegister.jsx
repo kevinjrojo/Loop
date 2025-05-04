@@ -20,9 +20,8 @@ const ConfirmRegister = () => {
 
             <p className="text-confirm-register">
               Te damos la bienvenida a
-              <strong className="text-loop"> Loop</strong>. <br /> Tu cuenta ha
-              sido creada con éxito. <br /> Por favor, inicia sesión para
-              continuar.
+              <strong className="text-loop"> Loop</strong>. Tu cuenta ha sido
+              creada con éxito. Por favor, inicia sesión para continuar.
             </p>
             <Link className="btn" to={"/"}>
               Iniciar sesión

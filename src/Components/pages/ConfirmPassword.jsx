@@ -25,7 +25,7 @@ const ConfirmPassword = () => {
 
             <p className="text-confirm-password">
               Tu contraseña de <strong className="text-loop"> Loop</strong> ha
-              sido restablecida con éxito. <br /> Por favor, inicia sesión para
+              sido restablecida con éxito. Por favor, inicia sesión para
               continuar.
             </p>
             <Link className="btn" to={"/"} onClick={handleSubmit}>
