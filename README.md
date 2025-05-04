@@ -16,4 +16,4 @@
 - mejorar vista para movil en gerenal.
 - mejorar vista de login,regster,password,etc.
 - hacer testing de login,register y password. ✅
-- manejar errores de login,register y password.
+- manejar errores de login,register y password. ✅

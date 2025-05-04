@@ -7,7 +7,7 @@ const ConfirmPassword = () => {
   };
 
   return (
-    <div className="password-container">
+    <div className="password-confirm-container">
       <div className="container">
         <form className="form">
           <div className="loading-container">
