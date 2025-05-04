@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const ConfirmRegister = () => {
   return (
-    <div className="password-container">
+    <div className="confirm-container">
       <div className="container">
         <form className="form">
           <div className="loading-container">
@@ -18,9 +18,11 @@ const ConfirmRegister = () => {
           <div className="form_front">
             <h1 className="form_details">Loop</h1>
 
-            <p className="password">
-              Te damos la bienvenida a Loop. <br /> Tu cuenta ha sido creada con
-              éxito. <br /> Por favor, inicia sesión para continuar.
+            <p className="text-confirm-register">
+              Te damos la bienvenida a
+              <strong className="text-loop"> Loop</strong>. <br /> Tu cuenta ha
+              sido creada con éxito. <br /> Por favor, inicia sesión para
+              continuar.
             </p>
             <Link className="btn" to={"/"}>
               Iniciar sesión

@@ -7,7 +7,7 @@ const ConfirmPassword = () => {
   };
 
   return (
-    <div className="password-confirm-container">
+    <div className="confirm-container">
       <div className="container">
         <form className="form">
           <div className="loading-container">
@@ -23,9 +23,10 @@ const ConfirmPassword = () => {
           <div className="form_front">
             <h1 className="form_details">Loop</h1>
 
-            <p className="password">
-              Tu contraseña ha sido restablecida con éxito. <br /> Por favor,
-              inicia sesión para continuar.
+            <p className="text-confirm-password">
+              Tu contraseña de <strong className="text-loop"> Loop</strong> ha
+              sido restablecida con éxito. <br /> Por favor, inicia sesión para
+              continuar.
             </p>
             <Link className="btn" to={"/"} onClick={handleSubmit}>
               Iniciar sesión

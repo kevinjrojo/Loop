@@ -135,6 +135,13 @@
   color: white;
   text-align: center;
 }
+.password-number-email {
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+}
 .windows-loading-spinner {
   box-sizing: border-box;
   width: 3rem;
@@ -198,5 +205,8 @@
     align-items: center;
     transform-style: flat;
     transition: all 1s ease;
+  }
+  .password-number-email {
+    width: 50vh;
   }
 }

@@ -68,7 +68,7 @@ const RecoverPassword = () => {
           </div>
           <div className={loading ? "loading" : "form_front"}>
             <h1 className="form_details">Loop</h1>
-            <p className="password">
+            <p className="password-number-email">
               Te enviamos un codigo de <br />
               verificacion a tu correo,copia y pega el codigo debajo.
             </p>
